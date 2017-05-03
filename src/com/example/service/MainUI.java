@@ -19,18 +19,39 @@ public class MainUI {
 		success = controller.login(username, password);
 		HttpSession session = request.getSession();
 		if(success){
-			
 			session.setAttribute("username", username);
-			forwardToJsp = "/homepage.jsp";
-			System.out.printf("should send to test.jsp");
+			String permission = checkPermission(username);
+			switch (permission) {
+			case "user":
+				forwardToJsp = "/homepage_onlineuser.jsp";	 //user page
+				break;
+				
+			case "receptionist":
+				forwardToJsp = "/homepage.jsp";//receptionist page
+				break;
+				
+			case "admin":
+				forwardToJsp = "/homepage_admin.jsp";//admin page
+				break;
 			
+			default: 
+				forwardToJsp = "/homepage_main.jsp";
+				break;
+			}	
 		}
 		else{
 			session.setAttribute("username", null);
-			forwardToJsp = "/homepage.html";
+			forwardToJsp = "/homepage_main.jsp";  //not logged in page
 		}
 		
 		return forwardToJsp;
+	}
+	
+	public String checkPermission(String username){
+		Controller controller = new Controller();
+		String permission = null;
+		permission = controller.checkPermission(username);
+		return permission;
 	}
 	
 	public String logout(HttpServletRequest request, HttpServletResponse repsonse){
@@ -52,11 +73,37 @@ public class MainUI {
 		String registerEmail = request.getParameter("registerEmail");
 		String regDOB = request.getParameter("regDOB");
 		String regContactNumber = request.getParameter("regContactNumber");
-		System.out.printf("regDOB: %s",regDOB);
 		controller.register(regUsername, regPassword, regConfirmPassword, registerEmail, regDOB, regContactNumber);
 		forwardToJsp = "/homepage.html";
 		return forwardToJsp;
 	}
+	
+	public String addStaff(HttpServletRequest request, HttpServletResponse repsonse){
+		Controller controller = new Controller();
+		String forwardToJsp = "";	
+		String regUsername = request.getParameter("regUsername");
+		String regPassword = request.getParameter("regPassword");
+		String regConfirmPassword = request.getParameter("regConfirmPassword");
+		String registerEmail = request.getParameter("registerEmail");
+		String regDOB = request.getParameter("regDOB");
+		String regContactNumber = request.getParameter("regContactNumber");
+		String regPriv = request.getParameter("regPriv");
+		controller.addStaff(regUsername, regPassword, regConfirmPassword, registerEmail, regDOB, regContactNumber, regPriv);
+		forwardToJsp = "/homepage.html";
+		return forwardToJsp;
+	}
+	
+	public String removeUser(HttpServletRequest request, HttpServletResponse repsonse){
+		Controller controller = new Controller();
+		String forwardToJsp = "";	
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		controller.removeUser(username, password);
+		HttpSession session = request.getSession();
+		session.setAttribute("username", null);
+		forwardToJsp = "/homepage.html";
+		return forwardToJsp;
+	}//End remove user
 	
 	public String searchRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();

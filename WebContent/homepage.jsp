@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+  pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,11 +63,23 @@
 
 		      <!-- Right Nav Bar -->
 		      <ul class="nav navbar-nav navbar-right">
-		      <form action="FrontController" method="post">
-		      <input type="hidden" name="action" value="logout">
-		        <li><button type="submit" class="btn btn-default btn-md">Logout</button><span class="glyphicon glyphicon-log-in" ></span>Logout</a></li>
-		      	</form>
-		      	</ul>
+		      <%!
+		      
+		      String someOutput() {
+		    	     return "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#registerModal\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a></li>";
+		    	  }
+		      %>
+		      <%!
+		      String someOutput2(){
+		    	  return "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#loginModal\"><span class=\"glyphicon glyphicon-log-in\" ></span> Login</a></li>";
+		      }
+		      %>
+		      
+		      <%= someOutput() %>
+
+		     		      
+		        
+		      </ul>
 		    </div>
 	  	</div>
 	</nav>

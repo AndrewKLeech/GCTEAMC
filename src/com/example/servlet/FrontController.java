@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.example.service.MainUI;
 
@@ -68,6 +67,14 @@ public class FrontController extends HttpServlet {
 			
 		case "register":
 			forwardToJsp = mainUi.register(request, response);
+			break;
+			
+		case "addStaff":
+			forwardToJsp = mainUi.addStaff(request, response);
+			break;
+			
+		case "removeUser":
+			forwardToJsp = mainUi.removeUser(request, response);
 			break;
 			
 		case "searchRoom":

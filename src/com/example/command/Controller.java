@@ -11,6 +11,8 @@ public class Controller {
 	
 	UserDao userdao = new UserDao();
 	RoomDao roomdao = new RoomDao();
+	
+	
 	public boolean login(String username, String password){
 		Boolean success = false;
 		try {			
@@ -23,6 +25,19 @@ public class Controller {
 		}
 		return success;
 	}//End login
+	
+	
+	
+	public String checkPermission(String username){
+		String permission = null;
+		try {			
+			permission = userdao.checkPermission(username);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return permission;
+	}//end checkPermission
 	
 	public boolean logout(){
 		return true;
@@ -37,7 +52,33 @@ public class Controller {
 			e.printStackTrace();
 			return false;
 		}
+	}//End register
+	
+	public boolean addStaff(String regUsername, String regPassword, String regConfirmPassword, String registerEmail, String regDOB, String regContactNumber, String regPriv){
+		try {			
+			userdao.addStaff(regUsername, regPassword, regConfirmPassword, registerEmail, regDOB, regContactNumber, regPriv);
+			return true;
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}//End addStaff
+	
+	
+	
+	public boolean removeUser(String username, String password){
+		Boolean success = false;
+		try {			
+			success = userdao.login(username, password);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return success;
 	}//End login
+	
+	
 	
 	public ArrayList<Room> searchRoom(String checkInDate, String checkOutDate, String roomType){
 		
