@@ -2,10 +2,12 @@ package com.example.business;
 
 public class Admin extends User{
 
-	public Admin(String uName,String fName,String lName)
+	public Admin(String fName,String lName,String userId,String password,String birthday)
 	{
-		this.uName=uName;
+		this.userId=userId;
 		this.fName=fName;
 		this.lName=lName;
+		this.password=password;
+		this.birthday=birthday;	
 	}
 }

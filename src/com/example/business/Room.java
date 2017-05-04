@@ -7,7 +7,6 @@ import com.example.dao.RoomDao;
 
 public class Room {
 
-	
 	private String roomNo = null;
 	private String roomType = null;
 	private String isSmoking = null;
@@ -18,7 +17,10 @@ public class Room {
 		this.isSmoking = isSmoking;
 		this.price = price;
 	}
+	public void setroomNo(String roomNo){
 	
+		this.roomNo=roomNo;
+	}
 	public String getRoomNo(){
 		return roomNo;
 	}
