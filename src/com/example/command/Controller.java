@@ -1,17 +1,21 @@
 
 package com.example.command;
 
+import com.example.dao.BookingDao;
 import com.example.dao.RoomDao;
 import com.example.dao.UserDao;
 import com.example.exceptions.DaoException;
+import com.example.business.Booking;
 import com.example.business.Room;
+
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class Controller {
 	
 	UserDao userdao = new UserDao();
 	RoomDao roomdao = new RoomDao();
-	
+	BookingDao bookingdao= new BookingDao();
 	
 	public boolean login(String username, String password){
 		Boolean success = false;
@@ -93,7 +97,7 @@ public class Controller {
 
 	public boolean removeRoom(String roomNo){
 		
-		try {			
+		try {
 			return roomdao.removeRoom(roomNo);
 		} 
 		catch (DaoException e) {
@@ -121,4 +125,67 @@ public class Controller {
 			return false;
 		}
 	}
+
+	public ArrayList<Booking> getBooking(String userId,String bookingId)
+	{
+		try {			
+			return bookingdao.getBooking(userId,bookingId);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public boolean makeBooking(String userId,String roomNo,String referenceNo,String reserveTime,Date arrDate,Date depDate,String checkInStatus) 
+	{
+		try {			
+			return bookingdao.makeBooking(userId,roomNo,referenceNo,reserveTime,arrDate,depDate,checkInStatus);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public ArrayList<Room> searchAvailableRoom(Date checkInDate, Date checkOutDate, String roomType) 
+	{
+		try {			
+			return bookingdao.searchAvailableRoom(checkInDate,checkOutDate,roomType);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public boolean cancelBooking(String bookingId)
+	{
+		try {			
+			return bookingdao.canselBooking(bookingId);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean checkIn(String bookingId)
+	{
+		try {			
+			return bookingdao.checkIn(bookingId);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public boolean checkOut(String bookingId)
+	{
+		try {			
+			return bookingdao.checkOut(bookingId);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Hotel Booking Extravaganza</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type='text/javascript' src='datepicker.js'></script>
+
+	<link rel="stylesheet" href="jquery.css">
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script type="text/javascript" src="hotel.js"></script>
+
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+    $( "#datepicker2" ).datepicker();
+  } );
+  </script>
+
+  <script>
+  $( function() {
+    
+  } );
+  </script>
+        
+
+
+
+	<link rel="stylesheet" type="text/css" href="homestyle.css" />
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+
+	  	<div class="container">
+	  		<!-- Navbar Header -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		      </button>
+		      <a class="navbar-brand" href="homepage.html">Appy Days</a>
+		    </div>
+
+		    <!-- Navbar contents -->
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		      <ul class="nav navbar-nav">
+		        <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Offers <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Spa Discounts</a></li>
+		            <li><a href="#">Room Discounts</a></li>
+		            <li><a href="#">Voucher Codes</a></li>
+		          </ul>
+		        </li>
+		        <li class="active"><a href="#" class="">Reservations</a></li>
+		        <li><a href="about.html">About</a></li>
+		        <li><a href="account.html">My Account</a></li>
+		      </ul>
+
+		      <!-- Right Nav Bar -->
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#" data-toggle="modal" data-target="#registerModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		        <li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+		      </ul>
+		    </div>
+	  	</div>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<h1 class="text-center">Room Booking</h1>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<div class="dropdown reservationDropdown center-block">
+					<div class="form-group">
+						<label for="numberOfPeople">Number of People</label>
+						<select class="form-control" id="numberOfPeople">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+						</select>
+					</div>
+				</div>
+			</div>   
+			
+			<div class="col-xs-12 col-sm-6">
+				<div class="dropdown reservationDropdown center-block">
+					<div class="form-group">
+						<label for="roomType">Room Type</label>
+						<select class="form-control" id="roomType">
+							<option>Single Room</option>
+							<option>Double Room</option>
+							<option>Family Room</option>
+						</select>
+					</div>
+				</div>
+			</div>            
+		</div>
+			<div class="row" id="datePickers">
+				<div class="col-xs-12 col-sm-6">
+					<div class="text-center center-block">
+						Check In Date:  <input type="text" id="datepicker" name="checkInDate">
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-xs-12">
+					<div class="text-center center-block">
+						Check Out Date:  <input type="text" id="datepicker2" name="checkOutDate">
+					</div>
+				</div>
+			</div>
+ 
+
+			
+	
+			<div class="col-xs-12 col-sm-6">
+				<div class="text-center center-block" id="searchResults">
+					<h3>Rooms Available</h3>
+					<div class="row">
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="text-center center-block" id="searchResults">
+					<h3>Room Details</h3>
+				</div>
+			</div>
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="center-block">
+					<button class="center-block btn btn-primary bookButton">Select</button>
+				</div>
+			</div>
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="center-block">
+					<button class="center-block btn btn-primary bookButton">Book this</button>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- Register Modal -->
+	<!-- Modal -->
+  	<div class="modal fade" id="registerModal" role="dialog">
+	    <div class="modal-dialog">
+	      <!-- Modal content-->
+	      <div class="modal-content">
+
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Register</h4>
+	        </div>
+
+	        <div class="modal-body">
+	          <div class="form-group">
+	          	<label for="username">Username</label>
+	          	<input type="text" class="form-control" placeholder="username" name="regUsername" id="registerUsername">
+	          </div>
+	          <div class="form-group">
+	          	<label for="password">Password</label>
+	          	<input type="password" class="form-control" placeholder="********" name="regPassword" id="registerPassword">
+	          </div>
+	          <div class="form-group">
+	          	<label for="confirmPassword">Confirm Password</label>
+	          	<input type="password" class="form-control" placeholder="********" name="regConfirmPassword" id="registerConfirmPassword">
+	          </div>
+	          <div class="form-group">
+	          	<label for="email">Email</label>
+	          	<input type="email" class="form-control" placeholder="" name="regEmail" id="registerEmail">
+	          </div>
+	          <div class="form-group">
+      			<label>Date of Birth</label>
+     			<input type="date" class="form-control" id="dateOfBirth" placeholder="Date of Birth">
+     		  </div>
+
+	          <div class="form-group">
+	          	<label for="Address">Address</label>
+	          	<input type="text" class="form-control" placeholder="" name="regContactNumber" id="registerContactNumber">
+	          </div>
+	        </div>
+	   
+	        <div class="modal-footer">
+		        <button class="btn btn-default btn-md">Register</button>
+	        </div>
+	      </div>
+	    </div>
+  	</div>
+	
+
+	<!-- Login Modal -->
+
+	<!-- Modal -->
+  	<div class="modal fade" id="loginModal" role="dialog">
+	    <div class="modal-dialog">
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Login</h4>
+	        </div>
+	        <div class="modal-body">
+	          <div class="form-group">
+	          	<label for="username">Username</label>
+	          	<input type="text" class="form-control" placeholder="username" name="username" id="loginUsername">
+	          </div>
+	          <div class="form-group">
+	          	<label for="username">Password</label>
+	          	<input type="password" class="form-control" placeholder="********" name="username" id="loginPassword">
+	          </div>
+
+	        <div class="modal-footer">
+		        <button class="btn btn-default btn-md">Login Now</button>
+		        <button type="button" class="btn btn-default btn-md" id="register_button" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Register</button>
+	        </div>
+	      </div>
+	    </div>
+  	</div>
+
+</body>
+</html> 
+
+
+
+<!-- <div class=" col-sm-4 col-md-4 col-lg-4 border"></div> -->

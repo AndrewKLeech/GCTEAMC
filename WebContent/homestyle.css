@@ -219,3 +219,8 @@ iframe{
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+#datepicker,#datepicker2{
+	margin: 20px;
+
+}
