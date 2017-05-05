@@ -139,6 +139,7 @@ public class MainUI {
 		String smoking = request.getParameter("smoking");
 		String addRoomPrice = request.getParameter("addRoomPrice");
 		controller.addRoom(addRoomNumber,bedType,smoking,addRoomPrice);
+		System.out.println(bedType);
 		forwardToJsp = "/manageRoom.jsp";
 		return forwardToJsp;
 	}

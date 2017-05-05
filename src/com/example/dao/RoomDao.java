@@ -111,13 +111,13 @@ public class RoomDao extends Dao {
         try {
             con = this.getConnection();
            
-            String query = "INSERT INTO room (roomNo, bedType, smoking, price) VALUES (?,'twin','Y',?);";
+            String query = "INSERT INTO room (roomNo, bedType, smoking, price) VALUES (?,?,'Y',?);";
             
             ps = con.prepareStatement(query);
             ps.setString(1, roomNo);
-            //ps.setString(2, bedType);
+            ps.setString(2, bedType);
             //ps.setString(3, smoking);
-            ps.setString(2, price);
+            ps.setString(3, price);
             ps.executeUpdate();
             success=true;
          } 
