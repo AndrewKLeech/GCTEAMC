@@ -73,11 +73,14 @@ public class MainUI {
 		String regUsername = request.getParameter("regUsername");
 		String regPassword = request.getParameter("regPassword");
 		String regConfirmPassword = request.getParameter("regConfirmPassword");
-		String registerEmail = request.getParameter("registerEmail");
-		String regDOB = request.getParameter("regDOB");
+		String regFirstName = request.getParameter("regFirstName");
+		String regLastName = request.getParameter("regLastName");
+		String regGender = request.getParameter("regGender");
+		String regBirth = request.getParameter("regBirth");
+		String regEmail = request.getParameter("regEmail");
 		String regContactNumber = request.getParameter("regContactNumber");
-		controller.register(regUsername, regPassword, regConfirmPassword, registerEmail, regDOB, regContactNumber);
-		forwardToJsp = "/homepage.html";
+		controller.register(regUsername, regPassword, regConfirmPassword, regFirstName, regLastName, regGender, regBirth, regEmail, regContactNumber);
+		forwardToJsp = "/homepage_main.html";
 		return forwardToJsp;
 	}
 	
@@ -158,7 +161,7 @@ public class MainUI {
 		String userId = null;
 		String referenceNo=null;
 		userId=request.getParameter("userId");
-		referenceNo= request.getParameter("referenceNo")
+		referenceNo= request.getParameter("referenceNo");
 		controller.getBooking(userId,referenceNo);
 		forwardToJsp = "/homepage.html";
 		return forwardToJsp;
