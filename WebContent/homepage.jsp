@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+  pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,11 +63,23 @@
 
 		      <!-- Right Nav Bar -->
 		      <ul class="nav navbar-nav navbar-right">
-		      <form action="FrontController" method="post">
-		      <input type="hidden" name="action" value="logout">
-		        <li><button type="submit" class="btn btn-default btn-md">Logout</button><span class="glyphicon glyphicon-log-in" ></span>Logout</a></li>
-		      	</form>
-		      	</ul>
+		      <%!
+		      
+		      String someOutput() {
+		    	     return "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#registerModal\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a></li>";
+		    	  }
+		      %>
+		      <%!
+		      String someOutput2(){
+		    	  return "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#loginModal\"><span class=\"glyphicon glyphicon-log-in\" ></span> Login</a></li>";
+		      }
+		      %>
+		      
+		      <%= someOutput() %>
+
+		     		      
+		        
+		      </ul>
 		    </div>
 	  	</div>
 	</nav>
@@ -239,27 +251,18 @@
 	          	<input type="password" class="form-control" placeholder="********" name="password" id="loginPassword">
 	          </div>
 				
-	        <div class="modal-footer">
+	         <div class="modal-footer">
 	        
 		        <button type="button" class="btn btn-default btn-md" id="register_button" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Register</button>
 		        <!-- Added to connect to back end -->
 	        	<input type="hidden" name="action" value="login">
 		        <button type="submit" class="btn btn-default btn-md">Login Now</button>
+		     </div>
 		    </form>
-	        </div>
+	        
 	      </div>
 	    </div>
-  	</div>
-
-  	<!-- Footer -->
-
-	<div class="" id="footer">
-		<div class="container">
-			<div class="row text-center">
-				<h1>Footer</h1>
-			</div>
-		</div>
-	</div>
+	   </div>
 
 </body>
 </html> 

@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.example.service.MainUI;
 
@@ -70,6 +69,14 @@ public class FrontController extends HttpServlet {
 			forwardToJsp = mainUi.register(request, response);
 			break;
 			
+		case "addStaff":
+			forwardToJsp = mainUi.addStaff(request, response);
+			break;
+			
+		case "removeUser":
+			forwardToJsp = mainUi.removeUser(request, response);
+			break;
+			
 		case "searchRoom":
 			forwardToJsp = mainUi.searchRoom(request, response);
 			break;
@@ -86,6 +93,29 @@ public class FrontController extends HttpServlet {
 			forwardToJsp = mainUi.ammendRoom(request, response);
 			break;
 		
+		case "makeBooking":
+			forwardToJsp = mainUi.makeBooking(request, response);
+			break;
+		
+		case "searchAvailableRoom":
+			forwardToJsp= mainUi.searchAvailableRoom(request, response);
+			
+		case "getBooking":
+			forwardToJsp = mainUi.getBooking(request, response);
+			break;
+			
+		case "canselBooking":
+			forwardToJsp = mainUi.canselBooking(request, response);
+			break;	
+			
+		case "checkIn":
+			forwardToJsp = mainUi.checkIn(request, response);
+			break;
+			
+		case "checkOut":
+			forwardToJsp = mainUi.checkOut(request, response);
+			break;
+			
 		default: 
 			forwardToJsp = "/errorPage.jsp";
 			break;
