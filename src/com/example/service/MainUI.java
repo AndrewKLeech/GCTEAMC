@@ -158,7 +158,7 @@ public class MainUI {
 		String userId = null;
 		String referenceNo=null;
 		userId=request.getParameter("userId");
-		referenceNo= request.getParameter("referenceNo")
+		referenceNo= request.getParameter("referenceNo");
 		controller.getBooking(userId,referenceNo);
 		forwardToJsp = "/homepage.html";
 		return forwardToJsp;

@@ -105,7 +105,7 @@ public class FrontController extends HttpServlet {
 			break;
 			
 		case "canselBooking":
-			forwardToJsp = mainUi.canselBooking(request, response);
+			//forwardToJsp = mainUi.canselBooking(request, response);
 			break;	
 			
 		case "checkIn":
