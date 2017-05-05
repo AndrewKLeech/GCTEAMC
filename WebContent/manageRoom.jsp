@@ -84,6 +84,7 @@
   	<div class="modal fade" id="addRoomModal" role="dialog">
   		<div class="modal-dialog">
   			<!-- Modal content-->
+  			<form action="FrontController" method="post">
   			<div class="modal-content">
   				<div class="modal-header">
   					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -119,9 +120,11 @@
   					</div>
   				</div>
   				<div class="modal-footer">
-  					<button class="btn btn-default btn-md"><a href="manageRoom.jsp"> Add</a></button>
+  					<input type="hidden" name="action" value="addRoom">
+  					<button type="submit" "btn btn-default btn-md">Add</button>
   				</div>
   			</div>
+  			</form>
   		</div>
   	</div>
 

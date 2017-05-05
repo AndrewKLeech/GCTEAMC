@@ -107,19 +107,18 @@ public class RoomDao extends Dao {
 		
 		Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
         boolean success=false;
         try {
             con = this.getConnection();
            
-            String query = "INCERT INTO ROOM (roomNo, bedType,smoking,price) VALUES (?,?,?,?);";
+            String query = "INSERT INTO room (roomNo, bedType, smoking, price) VALUES (?,?,?,?);";
             
             ps = con.prepareStatement(query);
             ps.setString(1, roomNo);
             ps.setString(2, bedType);
             ps.setString(3, smoking);
-            ps.setString(3, price);
-            rs = ps.executeQuery();
+            ps.setString(4, price);
+            ps.executeUpdate();
             success=true;
          } 
         catch (SQLException e) {
@@ -127,9 +126,6 @@ public class RoomDao extends Dao {
         }
         finally {
             try {
-                if (rs != null) {
-                    rs.close();
-                }
                 if (ps != null) {
                     ps.close();
                 }

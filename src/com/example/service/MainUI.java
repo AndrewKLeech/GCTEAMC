@@ -134,12 +134,13 @@ public class MainUI {
 	public String addRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
-		String roomNo = request.getParameter("roomNo");
+		String addRoomNumber = request.getParameter("addRoomNumber");
 		String bedType = request.getParameter("bedType");
 		String smoking = request.getParameter("smoking");
-		String price = request.getParameter("price");
-		controller.addRoom(roomNo,bedType,smoking,price);
-		forwardToJsp = "/homepage.html";
+		String addRoomPrice = request.getParameter("addRoomPrice");
+		controller.addRoom(addRoomNumber,bedType,smoking,addRoomPrice);
+		System.out.println(bedType);
+		forwardToJsp = "/manageRoom.jsp";
 		return forwardToJsp;
 	}
 
