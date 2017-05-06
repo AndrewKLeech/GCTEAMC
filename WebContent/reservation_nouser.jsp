@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8" %>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+  
 
 <!DOCTYPE html>
 <html>
@@ -84,9 +88,9 @@ if(session.getAttribute("priv")!=null)
 					<span class="caret"></span></button>
 					<ul class="dropdown-menu" id="">
 						<li><input type="radio" name="bedType" value="single" checked> Single</li>
-  						<li><input type="radio" name="numOfPeople" value="double"> Double</li>
-  						<li><input type="radio" name="numOfPeople" value="queen"> Queen</li>
-  						<li><input type="radio" name="numOfPeople" value="king"> King</li>
+  						<li><input type="radio" name="bedType" value="double"> Double</li>
+  						<li><input type="radio" name="bedType" value="queen"> Queen</li>
+  						<li><input type="radio" name="bedType" value="king"> King</li>
 					</ul>
 				</div>
 			</div>
@@ -110,6 +114,21 @@ if(session.getAttribute("priv")!=null)
 				<div class="text-center center-block" id="searchResults">
 					<h3>Rooms Available</h3>
 					<div class="row">
+					<%@ page import="java.util.*, com.example.business.Room" %>
+
+
+
+	
+<table>
+  <c:forEach items="${rooms}" var="room">
+    <tr>
+      <td><c:out value="${room.getRoomNo()}" /></td>
+      <td><c:out value="${room.getRoomType()}" /></td>
+      <td><c:out value="${room.getIsSmoking()}" /></td>
+      <td><c:out value="${room.getprice()}" /></td>
+    </tr>
+  </c:forEach>
+</table>
 					</div>
 				</div>
 			</div>

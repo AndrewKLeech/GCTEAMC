@@ -2,10 +2,13 @@
 
 package com.example.service;
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.example.business.Room;
 import com.example.command.Controller;
 
 public class MainUI {
@@ -122,7 +125,9 @@ public class MainUI {
 		checkOutDate = request.getParameter("checkOutDate");		//Change according to front end
 		roomType = request.getParameter("bedType");
 		numOfPeople = request.getParameter("numOfPeople");
-		controller.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
+		List<Room> rooms = controller.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
+		HttpSession session = request.getSession();
+		session.setAttribute("rooms", rooms);
 		forwardToJsp = "/reservation_nouser.jsp";
 		return forwardToJsp;
 	}
