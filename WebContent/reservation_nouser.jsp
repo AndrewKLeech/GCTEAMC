@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8" %>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
   
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,9 +91,6 @@ if(session.getAttribute("priv")!=null)
 					</ul>
 				</div>
 			</div>
-			<input type="hidden" name="action" value="searchRoom">
-			<button type="submit" class="btn btn-default btn-md" name="searchRoom">Search</button>
-			</form>
 
 			<div class="col-xs-12 col-sm-6">
 				<div class="text-center center-block" id="calendarContainer">
@@ -109,26 +103,27 @@ if(session.getAttribute("priv")!=null)
 					Check Out Date
 				</div>
 			</div>
+			<input type="hidden" name="action" value="searchRoom">
+			<button type="submit" class="btn btn-default btn-md" name="searchRoom">Search</button>
+			</form>
 	
 			<div class="col-xs-12 col-sm-6">
 				<div class="text-center center-block" id="searchResults">
 					<h3>Rooms Available</h3>
 					<div class="row">
+					
 					<%@ page import="java.util.*, com.example.business.Room" %>
-
-
-
-	
-<table>
-  <c:forEach items="${rooms}" var="room">
-    <tr>
-      <td><c:out value="${room.getRoomNo()}" /></td>
-      <td><c:out value="${room.getRoomType()}" /></td>
-      <td><c:out value="${room.getIsSmoking()}" /></td>
-      <td><c:out value="${room.getprice()}" /></td>
-    </tr>
-  </c:forEach>
-</table>
+					<table>
+					  <c:forEach items="${rooms}" var="room">
+					    <tr>
+					      <td><c:out value="${room.getRoomNo()}" /></td>
+					      <td><c:out value="${room.getRoomType()}" /></td>
+					      <td><c:out value="${room.getIsSmoking()}" /></td>
+					      <td><c:out value="${room.getprice()}" /></td>
+					    </tr>
+					  </c:forEach>
+					</table>
+					
 					</div>
 				</div>
 			</div>

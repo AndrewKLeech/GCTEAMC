@@ -26,6 +26,7 @@ public class MainUI {
 		HttpSession session = request.getSession();
 		if(success){
 			String permission = checkPermission(username);
+			session.setAttribute("username", username);
 			session.setAttribute("priv", permission);
 			switch (permission) {
 			case "user":
@@ -66,6 +67,7 @@ public class MainUI {
 		controller.logout();
 		HttpSession session = request.getSession();
 		session.setAttribute("username", null);
+		session.setAttribute("priv", null);
 		forwardToJsp = "/homepage_main.jsp";
 		return forwardToJsp;
 	}
@@ -141,7 +143,32 @@ public class MainUI {
 		//Send list of rooms to frontend
 		HttpSession session = request.getSession();
 		session.setAttribute("rooms", rooms);
-		forwardToJsp = "/reservation_nouser.jsp";
+		String permission = null;
+		if(session.getAttribute("priv")!=null){
+			permission = (String) session.getAttribute("priv");
+		}
+		if(permission!=null){
+			switch (permission) {
+			case "user":
+				forwardToJsp = "/reservation_onlineuser.jsp";	 //user page
+				break;
+				
+			case "receptionist":
+				forwardToJsp = "/reservation_reception.jsp";//receptionist page
+				break;
+				
+			case "admin":
+				forwardToJsp = "/reservation_admin.jsp";//admin page
+				break;
+			
+			default: 
+				forwardToJsp = "/reservation_nouser.jsp";
+				break;
+			}
+		}
+		else{
+			forwardToJsp = "/reservation_nouser.jsp";
+		}
 		return forwardToJsp;
 	}
 
