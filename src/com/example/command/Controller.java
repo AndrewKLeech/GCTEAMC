@@ -84,10 +84,10 @@ public class Controller {
 	
 	
 	
-	public ArrayList<Room> searchRoom(String checkInDate, String checkOutDate, String roomType){
+	public ArrayList<Room> searchRoom(String checkInDate, String checkOutDate, String roomType, String numOfPeople){
 		
 		try {			
-			return roomdao.searchRoom(checkInDate, checkOutDate,roomType);
+			return roomdao.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();

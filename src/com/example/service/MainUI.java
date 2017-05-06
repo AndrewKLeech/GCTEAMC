@@ -114,12 +114,16 @@ public class MainUI {
 	public String searchRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
-		String checkInDate = request.getParameter("checkInDate");		//TODO:
-		String checkOutDate = request.getParameter("checkOutDate");		//Change according to front end
-		String roomType = request.getParameter("roomType");
-		//System.out.printf("regDOB: %s",regDOB);
-		controller.searchRoom(checkInDate, checkOutDate, roomType);
-		forwardToJsp = "/homepage.html";
+		String checkInDate = null;
+		String checkOutDate = null;
+		String roomType = null;
+		String numOfPeople = null;
+		checkInDate = request.getParameter("checkInDate");		//TODO:
+		checkOutDate = request.getParameter("checkOutDate");		//Change according to front end
+		roomType = request.getParameter("bedType");
+		numOfPeople = request.getParameter("numOfPeople");
+		controller.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
+		forwardToJsp = "/reservation_nouser.jsp";
 		return forwardToJsp;
 	}
 
@@ -139,7 +143,6 @@ public class MainUI {
 		String smoking = request.getParameter("smoking");
 		String addRoomPrice = request.getParameter("addRoomPrice");
 		controller.addRoom(addRoomNumber,bedType,smoking,addRoomPrice);
-		System.out.println(bedType);
 		forwardToJsp = "/manageRoom.jsp";
 		return forwardToJsp;
 	}

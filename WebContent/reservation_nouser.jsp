@@ -90,8 +90,8 @@ if(session.getAttribute("priv")!=null)
 					</ul>
 				</div>
 			</div>
-			<input type="hidden" name="action" value="viewRooms">
-			<button type="submit" class="btn btn-default btn-md" name="viewRooms">Search</button>
+			<input type="hidden" name="action" value="searchRoom">
+			<button type="submit" class="btn btn-default btn-md" name="searchRoom">Search</button>
 			</form>
 
 			<div class="col-xs-12 col-sm-6">
