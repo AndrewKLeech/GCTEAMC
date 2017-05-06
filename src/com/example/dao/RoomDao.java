@@ -27,8 +27,19 @@ public class RoomDao extends Dao {
         try {
             con = this.getConnection();
             
-            String query = "SELECT * FROM room;";  //TODO: make search query for finding avalible rooms
+            String query = "SELECT roomNo, bedType, smoking, price FROM room WHERE room.bedType = ? AND room.roomNo NOT IN (SELECT reservation.roomNo FROM reservation WHERE (reservation.checkIn > ? AND reservation.checkOut < ?) OR (reservation.checkOut >= ? AND reservation.checkOut < ?));";
             ps = con.prepareStatement(query);
+            //1 bed type
+            //2 checkin date
+            //3 checkout date
+            //4 checkin date
+            //5 checkout date
+            ps.setString(1, roomType);
+            ps.setDate(2, checkInDate);
+            ps.setDate(3, checkOutDate);
+            ps.setDate(4, checkInDate);
+            ps.setDate(5, checkOutDate);
+           
             rs = ps.executeQuery();
             
             while (rs.next()) {
