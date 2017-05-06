@@ -96,9 +96,6 @@ public class FrontController extends HttpServlet {
 		case "makeBooking":
 			forwardToJsp = mainUi.makeBooking(request, response);
 			break;
-		
-		case "searchAvailableRoom":
-			forwardToJsp= mainUi.searchAvailableRoom(request, response);
 			
 		case "getBooking":
 			forwardToJsp = mainUi.getBooking(request, response);

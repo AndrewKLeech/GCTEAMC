@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import com.example.business.Room;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class RoomDao extends Dao {
 
-	public ArrayList<Room> searchRoom(String checkInDate, String checkOutDate, String roomType, String numOfPeople) throws DaoException{
+	public ArrayList<Room> searchRoom(Date checkInDate, Date checkOutDate, String roomType, String numOfPeople) throws DaoException{
 		ArrayList<Room> roomList = new ArrayList<Room>();
 		Connection con = null;
         PreparedStatement ps = null;

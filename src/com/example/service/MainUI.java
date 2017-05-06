@@ -116,16 +116,29 @@ public class MainUI {
 	
 	public String searchRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
-		String forwardToJsp = "";	
-		String checkInDate = null;
-		String checkOutDate = null;
+		String forwardToJsp = "";
+		//Set varables to null;
+		Date checkInDate = null;
+		String checkInString = null;
+		Date checkOutDate = null;
+		String checkOutString = null;
 		String roomType = null;
 		String numOfPeople = null;
-		checkInDate = request.getParameter("checkInDate");		//TODO:
-		checkOutDate = request.getParameter("checkOutDate");		//Change according to front end
+		//Get string values from frontend form
+		checkInString = request.getParameter("checkInDate");		
+		checkOutString = request.getParameter("checkOutDate");
 		roomType = request.getParameter("bedType");
 		numOfPeople = request.getParameter("numOfPeople");
+		//Convert date string to Date data type
+		if(checkInString!=null){
+			checkInDate=convertDate(checkInString);
+		}
+		if(checkOutString!=null){
+			checkOutDate=convertDate(checkOutString);
+		}
+		//Get list of rooms from controller
 		List<Room> rooms = controller.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
+		//Send list of rooms to frontend
 		HttpSession session = request.getSession();
 		session.setAttribute("rooms", rooms);
 		forwardToJsp = "/reservation_nouser.jsp";
@@ -172,19 +185,6 @@ public class MainUI {
 		userId=request.getParameter("userId");
 		referenceNo= request.getParameter("referenceNo");
 		controller.getBooking(userId,referenceNo);
-		forwardToJsp = "/homepage.html";
-		return forwardToJsp;
-	}
-	
-	public String searchAvailableRoom(HttpServletRequest request, HttpServletResponse repsonse){
-		Controller controller = new Controller();
-		String forwardToJsp = "";	
-		String checkInDatetemp = request.getParameter("checkInDate");
-		String checkOutDatetemp = request.getParameter("checkOutDate");
-		String roomType = request.getParameter("roomType");
-		Date checkInDate=convertDate(checkInDatetemp);
-		Date checkOutDate=convertDate(checkOutDatetemp);
-		controller.searchAvailableRoom(checkInDate,checkOutDate,roomType);
 		forwardToJsp = "/homepage.html";
 		return forwardToJsp;
 	}
