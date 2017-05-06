@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8" %>
-
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,22 +59,22 @@ if(session.getAttribute("priv")!=null)
 		<div class="row">
 			<h1 class="text-center">Room Booking</h1>
 		</div>
-
+		<form action="FrontController" method="post">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<div class="dropdown reservationDropdown center-block">
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="roomTypeButton">Number of People
 					<span class="caret"></span></button>
 					<ul class="dropdown-menu" id="">
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">6</a></li>
-						<li><a href="#">7</a></li>
-						<li><a href="#">8</a></li>
-						<li><a href="#">9</a></li>
+						<li><input type="radio" name="numOfPeople" value="1" checked> 1</li>
+  						<li><input type="radio" name="numOfPeople" value="2"> 2</li>
+  						<li><input type="radio" name="numOfPeople" value="3"> 3</li>
+						<li><input type="radio" name="numOfPeople" value="4"> 4</li>
+						<li><input type="radio" name="numOfPeople" value="5"> 5</li>
+						<li><input type="radio" name="numOfPeople" value="6"> 6</li>
+						<li><input type="radio" name="numOfPeople" value="7"> 7</li>
+						<li><input type="radio" name="numOfPeople" value="8"> 8</li>
+						<li><input type="radio" name="numOfPeople" value="9"> 9</li>
 					</ul>
 				</div>
 			</div>
@@ -83,9 +84,10 @@ if(session.getAttribute("priv")!=null)
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="roomTypeButton">Room Type
 					<span class="caret"></span></button>
 					<ul class="dropdown-menu" id="">
-						<li><a href="#">Single Room</a></li>
-						<li><a href="#">Double Room</a></li>
-						<li><a href="#">Family Room</a></li>
+						<li><input type="radio" name="bedType" value="single" checked> Single</li>
+  						<li><input type="radio" name="bedType" value="double"> Double</li>
+  						<li><input type="radio" name="bedType" value="queen"> Queen</li>
+  						<li><input type="radio" name="bedType" value="king"> King</li>
 					</ul>
 				</div>
 			</div>
@@ -101,11 +103,27 @@ if(session.getAttribute("priv")!=null)
 					Check Out Date
 				</div>
 			</div>
+			<input type="hidden" name="action" value="searchRoom">
+			<button type="submit" class="btn btn-default btn-md" name="searchRoom">Search</button>
+			</form>
 	
 			<div class="col-xs-12 col-sm-6">
 				<div class="text-center center-block" id="searchResults">
 					<h3>Rooms Available</h3>
 					<div class="row">
+					
+					<%@ page import="java.util.*, com.example.business.Room" %>
+					<table>
+					  <c:forEach items="${rooms}" var="room">
+					    <tr>
+					      <td><c:out value="${room.getRoomNo()}" /></td>
+					      <td><c:out value="${room.getRoomType()}" /></td>
+					      <td><c:out value="${room.getIsSmoking()}" /></td>
+					      <td><c:out value="${room.getprice()}" /></td>
+					    </tr>
+					  </c:forEach>
+					</table>
+					
 					</div>
 				</div>
 			</div>

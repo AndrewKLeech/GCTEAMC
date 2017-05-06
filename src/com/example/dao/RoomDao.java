@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import com.example.business.Room;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class RoomDao extends Dao {
 
-	public ArrayList<Room> searchRoom(String checkInDate, String checkOutDate, String roomType) throws DaoException{
+	public ArrayList<Room> searchRoom(Date checkInDate, Date checkOutDate, String roomType, String numOfPeople) throws DaoException{
 		ArrayList<Room> roomList = new ArrayList<Room>();
 		Connection con = null;
         PreparedStatement ps = null;
@@ -26,25 +27,23 @@ public class RoomDao extends Dao {
         try {
             con = this.getConnection();
             
-            String query = "SELECT * FROM room WHERE  = ?;";  //TODO: make search query for finding avalible rooms
+            String query = "SELECT * FROM room;";  //TODO: make search query for finding avalible rooms
             ps = con.prepareStatement(query);
-            ps.setString(1, checkInDate);
-            ps.setString(2, checkOutDate);
-            ps.setString(3, roomType);
             rs = ps.executeQuery();
             
             while (rs.next()) {
             	//Add all room data to room object then add to array list.
             	String no = null;
             	String type = null;
-            	String isSmoking = null;
+            	String smoking = null;
+            	String price = null;
             	
-                no = rs.getString("roomId");				//TODO:
-                type = rs.getString("type");				//Change according to
-                isSmoking = rs.getString("isSmoking");	//database attributes
-                
-                //Room room = new Room(no,type,isSmoking);
-                //roomList.add(room);
+                no = rs.getString("roomNo");
+                type = rs.getString("bedType");
+                smoking = rs.getString("smoking");
+                price = rs.getString("price");
+                Room room = new Room(no,type,smoking,price);
+                roomList.add(room);
             }
         } 
         catch (SQLException e) {

@@ -84,10 +84,10 @@ public class Controller {
 	
 	
 	
-	public ArrayList<Room> searchRoom(String checkInDate, String checkOutDate, String roomType){
+	public ArrayList<Room> searchRoom(Date checkInDate, Date checkOutDate, String roomType, String numOfPeople){
 		
 		try {			
-			return roomdao.searchRoom(checkInDate, checkOutDate,roomType);
+			return roomdao.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();
@@ -146,16 +146,7 @@ public class Controller {
 			return false;
 		}
 	}
-	public ArrayList<Room> searchAvailableRoom(Date checkInDate, Date checkOutDate, String roomType) 
-	{
-		try {			
-			return bookingdao.searchAvailableRoom(checkInDate,checkOutDate,roomType);
-		} 
-		catch (DaoException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+
 	public boolean cancelBooking(String bookingId)
 	{
 		try {			

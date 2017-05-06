@@ -51,7 +51,7 @@ if(session.getAttribute("priv")!=null)
 	
 	<!-- Contents about reservation -->	
 	<div class="container">
-		<jsp:include page="reservation_body.html"/>
+		<jsp:include page="reservation_body.jsp"/>
 	</div>
 </body>
 </html>
