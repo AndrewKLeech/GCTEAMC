@@ -127,8 +127,8 @@ public class MainUI {
 		String roomType = null;
 		String numOfPeople = null;
 		//Get string values from frontend form
-		checkInString = request.getParameter("checkInDate");		
-		checkOutString = request.getParameter("checkOutDate");
+		checkInString = request.getParameter("checkIn");		
+		checkOutString = request.getParameter("checkOut");
 		roomType = request.getParameter("bedType");
 		numOfPeople = request.getParameter("numOfPeople");
 		//Convert date string to Date data type
