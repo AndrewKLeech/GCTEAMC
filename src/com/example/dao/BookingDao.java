@@ -14,6 +14,51 @@ import com.example.exceptions.DaoException;
 
 public class BookingDao extends Dao {
 
+	public String bookingCode(String roomNo) throws DaoException
+	{
+		String bookingCode = null;
+		Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            con = this.getConnection();
+            
+            String query = "SELECT * FROM reservation WHERE roomNo = ?;";
+            ps = con.prepareStatement(query);
+            ps.setString(1, roomNo);
+            int count=0;
+            rs = ps.executeQuery();
+            do{
+            	count++;
+                
+            }while(rs.next());
+            String counttemp =String.format("%04d", count);
+            String random=String.format("%02d",(count*777)/100);
+            bookingCode=roomNo+counttemp+random;
+        } 
+        catch (SQLException e) {
+            throw new DaoException("bookingCode search: " + e.getMessage());    
+        }
+        finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            }//end try 
+            catch (SQLException e) {
+                throw new DaoException("bookingCode search: " + e.getMessage());
+            }//end catch
+        }//end finally
+
+		return bookingCode;
+	}
+	
 	public boolean checkAvailable(Date arrDateTemp,Date depDateTemp,Date checkInDate,Date checkOutDate)
 	{
 		//check date of booking.
