@@ -17,7 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     
         <!-- For Date Picker to check in and out  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>    
     <script>
@@ -102,16 +102,20 @@
         <div class="row">   
             <div class="col-xs-12 col-sm-6">
                 <div class="form-group">
-                    <input type="hidden" name="checkin">
-                    <label for="checkin-select">Check In Date</label>
-                    <input type="text" id="checkin-select" placeholder="dd/mm/yyyy" name="checkIn">   
+                	<div class="text-center center-block">
+                    	<input type="hidden" name="checkin">
+                    	<label for="checkin-select">Check In Date</label>
+                   		<input type="text" id="checkin-select" placeholder="dd/mm/yyyy" name="checkIn">   
+                	</div>
                 </div>
             </div>
             <div class="col-sm-6 col-xs-12">
                 <div class="form-group">
+                	<div class="text-center center-block">
                         <input type="hidden" name="checkout">
                         <label for="checkout-select">Check Out Date</label>
                         <input type="text" id="checkout-select" placeholder="dd/mm/yyyy" name="checkOut">
+                	</div>
                 </div>
             </div>
         </div>
