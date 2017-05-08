@@ -126,8 +126,14 @@
             	</div>
 			</div>
 		</div>
-		<input type="hidden" name="action" value="searchRoom">
-		<button type="submit" class="btn btn-default btn-md" name="searchRoom">Search</button>
+		<div class="row">
+			<div class="form-group">
+				<div class="text-center center-block">
+					<input type="hidden" name="action" value="searchRoom">
+					<button type="submit" class="btn btn-default btn-md" name="searchRoom">Search</button>
+				</div>
+			</div>	
+		</div>
 		</form>
 		
 		<div class="row container-fluid">
