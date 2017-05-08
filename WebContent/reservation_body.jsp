@@ -151,6 +151,7 @@
 							<td><c:out value="${room.getprice()}" /></td>
 							<td><a href="invoice.html" class="btn btn-primary">Book</a></td>
 						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 			</div>
