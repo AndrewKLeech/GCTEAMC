@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8" %>
+pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html>
@@ -51,30 +51,34 @@
 				Reservation Information
 			</h3>
 
-			<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 border informationContainer">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis dolor vitae pretium bibendum. Cras feugiat dolor id elit sodales tristique. Vestibulum scelerisque ipsum a nunc pellentesque semper. Quisque vitae aliquam ante, in volutpat dui. Fusce malesuada pharetra mauris in convallis. Praesent auctor eleifend nisi, nec gravida quam vehicula non. Vivamus congue lobortis tortor, vitae gravida felis condimentum eget. Cras eu ex rutrum, tincidunt dui et, volutpat leo. Aenean faucibus hendrerit odio. In efficitur ornare nunc, in malesuada mi ultrices nec.
-				</p>
-			</div>
-
-			<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
-				<div class="col-sm-4">
-					<button class="center-block btn btn-default btn-info manageButton">Edit Selected</button>
-				</div>
-
-				<div class="col-sm-4">
-					<button class="center-block btn btn-default btn-info manageButton">Delete Selected</button>
-				</div>
-
-				<div class="col-sm-4">
-					<button class="center-block btn btn-default btn-info manageButton">Save Changes</button>
-				</div>
-			</div>
+			<table class="table">
+				<c:forEach items="${rooms}" var="room">
+				<thead class="thead-inverse">
+					<tr>
+						<th>Name</th>
+						<th>Room Number</th>
+						<th>Check In Date</th>
+						<th>Check Out Date</th>
+						<th>Price</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Lennard Bandol</td>
+						<th>101</th>
+						<td>2017/05/20</td>
+						<td>2017/05/25</td>
+						<td>$49.99</td>
+						<td><a href="invoice.html" class="btn btn-danger">Delete</a></td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
 		</div>
 
+		<a href="admin.jsp" class="center-block btn btn-default btn-info manageButton">Back</a>
 	</div>
-
-
 
 </body>
 </html>
