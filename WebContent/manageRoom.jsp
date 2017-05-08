@@ -76,6 +76,7 @@ pageEncoding="UTF-8" %>
 						<td><a href="#" class="btn btn-danger">Delete</a></td>
 					</tr>
 				</tbody>
+				</c:forEach>
 			</table>
 
 			<a class="center-block btn btn-default btn-info manageButton" href="#" data-toggle="modal" data-target="#addRoomModal">Add Room</a>
