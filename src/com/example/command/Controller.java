@@ -47,9 +47,9 @@ public class Controller {
 		return true;
 	}//End logout
 	
-	public boolean register(String regUsername,String regPassword,String regConfirmPassword,String regFirstName,String regLastName, String regGender, String regBirth, String regEmail, String regContactNumber){
+	public boolean register(String regUsername,String regPassword,String regConfirmPassword,String regFirstName,String regLastName, String regBirth, String regEmail, String regContactNumber){
 		try {			
-			userdao.register(regUsername, regPassword, regConfirmPassword, regFirstName, regLastName, regGender, regBirth, regEmail, regContactNumber);
+			userdao.register(regUsername, regPassword, regConfirmPassword, regFirstName, regLastName, regBirth, regEmail, regContactNumber);
 			return true;
 		} 
 		catch (DaoException e) {

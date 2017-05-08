@@ -80,11 +80,10 @@ public class MainUI {
 		String regConfirmPassword = request.getParameter("regConfirmPassword");
 		String regFirstName = request.getParameter("regFirstName");
 		String regLastName = request.getParameter("regLastName");
-		String regGender = request.getParameter("regGender");
 		String regBirth = request.getParameter("regBirth");
 		String regEmail = request.getParameter("regEmail");
 		String regContactNumber = request.getParameter("regContactNumber");
-		controller.register(regUsername, regPassword, regConfirmPassword, regFirstName, regLastName, regGender, regBirth, regEmail, regContactNumber);
+		controller.register(regUsername, regPassword, regConfirmPassword, regFirstName, regLastName, regBirth, regEmail, regContactNumber);
 		forwardToJsp = "/homepage_main.jsp";
 		return forwardToJsp;
 	}
