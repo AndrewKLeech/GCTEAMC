@@ -99,27 +99,19 @@ public class UserDao extends Dao {
     
     
     
-    public boolean register(String regUsername,String regPassword,String regConfirmPassword,String regFirstName,String regLastName, String regGender, String regBirth, String regEmail, String regContactNumber) throws DaoException{
+    public boolean register(String regUsername,String regPassword,String regConfirmPassword,String regFirstName,String regLastName, String regBirth, String regEmail, String regContactNumber) throws DaoException{
         Connection con = null;
         PreparedStatement ps = null;
         boolean success = false;
         try {
             con = this.getConnection();
-            String query = "INSERT INTO user (userId, password, name, email, gender, birthday, privilege) VALUES (?,?,?,?,?,?,'user');";
+            String query = "INSERT INTO user (userId, password, name, email, birthday, privilege) VALUES (?,?,?,?,?,'user');";
             ps = con.prepareStatement(query);
             ps.setString(1, regUsername);
             ps.setString(2, regPassword);
             ps.setString(3, regFirstName);
             ps.setString(4, regEmail);
-            String gender = "F";
-            if (regGender.equals("Male")){
-            	gender = "M";
-            }
-            else if (regGender.equals("Feamle")){
-            	gender = "F";
-            }
-            ps.setString(5, gender);
-            ps.setString(6, regBirth);
+            ps.setString(5, regBirth);
             ps.executeUpdate();
             success = true;
         } 
@@ -148,7 +140,7 @@ public class UserDao extends Dao {
         boolean success = false;
         try {
             con = this.getConnection();
-            String query = "INSERT INTO user (userId, password, name, birthday, gender, privilege) VALUES (?,?,?,?,'M','?');";
+            String query = "INSERT INTO user (userId, password, name, birthday, privilege) VALUES (?,?,?,?,?);";
             ps = con.prepareStatement(query);
             ps.setString(1, regUsername);
             ps.setString(2, regPassword);
