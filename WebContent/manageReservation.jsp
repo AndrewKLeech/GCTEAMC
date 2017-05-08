@@ -72,6 +72,7 @@ pageEncoding="UTF-8" %>
 						<td>$49.99</td>
 						<td><a href="invoice.html" class="btn btn-danger">Delete</a></td>
 					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>
