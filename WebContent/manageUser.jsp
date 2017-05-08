@@ -69,6 +69,7 @@ pageEncoding="UTF-8" %>
 						<td><a href="#" class="btn btn-danger">Delete</a></td>
 					</tr>
 				</tbody>
+				</c:forEach>
 			</table>
 
 		</div>
