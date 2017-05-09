@@ -87,6 +87,20 @@ if(session.getAttribute("priv")!=null)
 	</script>
 
 	<link rel="stylesheet" type="text/css" href="homestyle.css" />
+	
+	<style>
+	table, th, td {
+    	border: 1px solid black;
+    	border-collapse: collapse;
+	}
+	table {
+		width: 93%;
+	}
+	th, td {
+    	padding: 5px;
+	}
+	</style>
+	
 </head>
 
 <body>
@@ -173,17 +187,29 @@ if(session.getAttribute("priv")!=null)
 					<div class="row">
 					
 					<%@ page import="java.util.*, com.example.business.Room" %>
-					<table>
+					<table align="center">
+						<thead class="thead-inverse">
+							<tr>
+								<th>Room No.</th>
+								<th>Room Details</th>
+								<th>Room Type</th>
+								<th>Smoking</th>
+								<th>Price</th>
+								<th>Select</th>
+							</tr>
+						</thead>
 					  <c:forEach items="${rooms}" var="room">
-					    <tr>
+					    <tr align="center">
 					      <td><c:out value="${room.getRoomNo()}" /></td>
+					      <td><a class="btn" href="#">View details »</a></td>
 					      <td><c:out value="${room.getRoomType()}" /></td>
 					      <td><c:out value="${room.getIsSmoking()}" /></td>
 					      <td><c:out value="${room.getprice()}" /></td>
-					    </tr>
+					      <td><input type="checkbox" name="checkedRoom" value="${room.getRoomNo()}" /></td>
+					  	</tr>
 					  </c:forEach>
 					</table>
-					
+					<h1></h1>
 					</div>
 				</div>
 			</div>
