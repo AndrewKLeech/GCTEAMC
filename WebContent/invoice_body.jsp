@@ -60,6 +60,7 @@ pageEncoding="UTF-8" %>
 							<Strong>Smoking: </Strong><c:out value="${room.getIsSmoking()}" /><br>
 							<Strong>CheckIn Date: </Strong>2017/05/20<br>
 							<Strong>CheckOut Date: </Strong>2017/05/25<br>
+							<Strong>Price: </Strong><c:out value="${room.getPrice()}" /><br>
 						</div>
 					</div>
 				</div>
