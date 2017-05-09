@@ -94,6 +94,17 @@ public class Controller {
 			return null;
 		}
 	}
+	
+	public Room searchRoom(String roomNo){
+		
+		try {			
+			return roomdao.searchRoom(roomNo);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public boolean removeRoom(String roomNo){
 		
