@@ -41,10 +41,11 @@ pageEncoding="UTF-8" %>
 						<div class="panel-heading">Personal information</div>
 						<div class="panel-body">
 							<!-- insert name here -->
-							<strong>Lennard Bandol</strong><br>
+							<%@ page import="java.util.*, com.example.business.User" %>
+							<strong><c:out value="${user.getName()}" /></strong><br>
 							<!-- insert address here -->
-							71 Pilgrim Avenue<br>
-							Chevy Chase, MD 20815<br>
+							<c:out value="${user.getuserId()}" /><br>
+							<c:out value="${user.getEmail()}" /><br><br>
 						</div>
 					</div>
 				</div>
@@ -55,12 +56,13 @@ pageEncoding="UTF-8" %>
 						<div class="panel-body">
 						
 				<%@ page import="java.util.*, com.example.business.Room" %>
+				
 							<Strong>Room Number: </Strong><c:out value="${room.getRoomNo()}" /><br>
 							<Strong>Room Type: </Strong><c:out value="${room.getRoomType()}" /><br>
 							<Strong>Smoking: </Strong><c:out value="${room.getIsSmoking()}" /><br>
 							<Strong>CheckIn Date: </Strong>2017/05/20<br>
 							<Strong>CheckOut Date: </Strong>2017/05/25<br>
-							<Strong>Price: </Strong><c:out value="${room.getPrice()}" /><br>
+							<Strong>Price: </Strong><c:out value="${room.getprice()}" /><br>
 						</div>
 					</div>
 				</div>

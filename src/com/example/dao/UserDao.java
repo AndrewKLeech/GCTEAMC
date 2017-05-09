@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.example.business.Room;
+import com.example.business.User;
 import com.example.exceptions.DaoException;
 
 
@@ -54,6 +57,57 @@ public class UserDao extends Dao {
         }//end finally
         return success;
     }//End login
+    
+    
+    public User getUser(String username) throws DaoException{
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        User user = null;
+        try {
+            con = this.getConnection();
+            String query = "SELECT userId, name, email, birthday, privilege FROM user WHERE userId = ?;";
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+            	String userId = null;
+            	String name = null;
+            	String email = null;
+            	String birthday = null;
+            	String privilege = null;
+            	
+            	userId = rs.getString("userId");
+                name = rs.getString("name");
+                email = rs.getString("email");
+                birthday = rs.getString("birthday");
+                privilege = rs.getString("privilege");
+        
+                user = new User(userId, name, email, birthday, privilege);
+            }
+        } 
+        catch (SQLException e) {
+            throw new DaoException("getUser: " + e.getMessage());    
+        } 
+        finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            }//end try 
+            catch (SQLException e) {
+                throw new DaoException("getUser: " + e.getMessage());
+            }//end catch
+        }//end finally
+        return user;
+    }//End getUser
     
     
     

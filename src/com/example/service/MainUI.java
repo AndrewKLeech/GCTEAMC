@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.example.business.Room;
+import com.example.business.User;
 import com.example.command.Controller;
 
 public class MainUI {
@@ -217,15 +218,25 @@ public class MainUI {
 	
 	public String invoice(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
+		HttpSession session = request.getSession();
 		String forwardToJsp = "";
-		//Get string values from frontend form
+		String userName = "";
+		
 		String roomNo = "";
 		roomNo = request.getParameter("invoice");		
-		//Get room info
 		Room room = controller.searchRoom(roomNo);
-		//Send room info to front end
-		HttpSession session = request.getSession();
 		session.setAttribute("room", room);
+		
+		if(session.getAttribute("username")!=null){
+			userName = (String) session.getAttribute("username");
+		}
+		System.out.println("username is: " + userName);
+		User user = controller.getUser(userName);
+		
+		//Send room info to front end
+		session.setAttribute("room", room);
+		session.setAttribute("user", user);
+		
 		String permission = null;
 		if(session.getAttribute("priv")!=null){
 			permission = (String) session.getAttribute("priv");

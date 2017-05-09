@@ -7,6 +7,7 @@ import com.example.dao.UserDao;
 import com.example.exceptions.DaoException;
 import com.example.business.Booking;
 import com.example.business.Room;
+import com.example.business.User;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -31,7 +32,6 @@ public class Controller {
 	}//End login
 	
 	
-	
 	public String checkPermission(String username){
 		String permission = null;
 		try {			
@@ -42,6 +42,17 @@ public class Controller {
 		}
 		return permission;
 	}//end checkPermission
+	
+	public User getUser(String userName){
+		User user = null;
+		try {			
+			user = userdao.getUser(userName);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}//End getUser()
 	
 	public boolean logout(){
 		return true;
