@@ -22,7 +22,8 @@ public class RoomDao extends Dao {
         try {
             con = this.getConnection();
             
-            String query = "SELECT roomNo, bedType, smoking, price FROM room WHERE room.bedType = ? AND room.roomNo NOT IN (SELECT reservation.roomNo FROM reservation WHERE (reservation.checkIn > ? AND reservation.checkOut < ?) OR (reservation.checkOut >= ? AND reservation.checkOut < ?));";
+            String query = "SELECT * FROM room WHERE room.bedType = ? AND room.roomNo NOT IN (SELECT reservation.roomNo FROM reservation WHERE (checkIn between ? and ?) OR (checkOut between ? and ?));";
+            
             ps = con.prepareStatement(query);
             //1 bed type
             //2 checkin date

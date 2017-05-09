@@ -52,7 +52,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		return user;
-	}//End getUser()
+	}
 	
 	public boolean logout(){
 		return true;
