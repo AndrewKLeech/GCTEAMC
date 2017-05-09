@@ -71,5 +71,19 @@ if(session.getAttribute("priv")!=null)
 
 		</div>
 	</div>
+	
+	<div class="container">
+			<div class="row">
+				<hr>
+				<div class="col-lg-12">
+					<div class="col-md-8">
+						Terms of Service | Privacy     
+					</div>
+					<div class="col-md-4">
+					<p class="muted pull-right">© 2017 Appy Days. All rights reserved</p>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>
