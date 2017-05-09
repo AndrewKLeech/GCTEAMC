@@ -2,13 +2,17 @@
 
 package com.example.service;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.example.business.Booking;
 import com.example.business.Room;
+import com.example.business.User;
 import com.example.command.Controller;
 
 public class MainUI {
@@ -117,31 +121,56 @@ public class MainUI {
 	
 	public String searchRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
+		HttpSession session = request.getSession();
 		String forwardToJsp = "";
 		//Set varables to null;
-		Date checkInDate = null;
+		java.sql.Date checkInDate = null;
+		java.sql.Date checkOutDate = null;
 		String checkInString = null;
-		Date checkOutDate = null;
 		String checkOutString = null;
 		String roomType = null;
 		String numOfPeople = null;
+		String userName = null;
 		//Get string values from frontend form
 		checkInString = request.getParameter("checkIn");		
 		checkOutString = request.getParameter("checkOut");
 		roomType = request.getParameter("bedType");
 		numOfPeople = request.getParameter("numOfPeople");
-		//Convert date string to Date data type
-		if(checkInString!=null){
-			checkInDate=convertDate(checkInString);
+		
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date date1 = null;;
+		try {
+			date1 = sdf1.parse(checkInString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if(checkOutString!=null){
-			checkOutDate=convertDate(checkOutString);
+		 checkInDate = new java.sql.Date(date1.getTime()); 
+		java.util.Date date2 = null;
+		try {
+			date2 = sdf1.parse(checkOutString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		checkOutDate = new java.sql.Date(date2.getTime());
+		
+		System.out.println(checkInDate);
+		System.out.println(checkOutDate);
+		
 		//Get list of rooms from controller
 		List<Room> rooms = controller.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
+		//TEMP BOOKING OBJECT
+		if(session.getAttribute("username")!=null){
+			userName = (String) session.getAttribute("username");
+		}
+		Booking booking = new Booking(userName, checkInDate, checkOutDate);
+		
 		//Send list of rooms to frontend
-		HttpSession session = request.getSession();
+		
 		session.setAttribute("rooms", rooms);
+		session.setAttribute("booking", booking);
+		
 		String permission = null;
 		if(session.getAttribute("priv")!=null){
 			permission = (String) session.getAttribute("priv");
@@ -217,15 +246,24 @@ public class MainUI {
 	
 	public String invoice(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
+		HttpSession session = request.getSession();
 		String forwardToJsp = "";
-		//Get string values from frontend form
+		String userName = "";
+		//ROOM
 		String roomNo = "";
 		roomNo = request.getParameter("invoice");		
-		//Get room info
 		Room room = controller.searchRoom(roomNo);
-		//Send room info to front end
-		HttpSession session = request.getSession();
 		session.setAttribute("room", room);
+		
+		if(session.getAttribute("username")!=null){
+			userName = (String) session.getAttribute("username");
+		}
+		User user = controller.getUser(userName);
+		
+		//Send room info to front end
+		session.setAttribute("room", room);
+		session.setAttribute("user", user);
+		
 		String permission = null;
 		if(session.getAttribute("priv")!=null){
 			permission = (String) session.getAttribute("priv");
@@ -258,16 +296,12 @@ public class MainUI {
 	public String makeBooking(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
-		String userId = request.getParameter("userId");
-		String roomNo = request.getParameter("roomNo");
-		String referenceNo = request.getParameter("referenceNo");
-		String reserveTime = request.getParameter("reserveTime");
-		String arrDatetemp =request.getParameter("checkIn");
-		String depDatetemp =request.getParameter("checkOut");
-		Date arrDate=convertDate(arrDatetemp);//need to convert string to Date;
-		Date depDate=convertDate(depDatetemp);//need to convert string to Date;
-		controller.makeBooking(userId,roomNo,referenceNo,reserveTime,arrDate,depDate,"not arrived");
-		forwardToJsp = "/homepage.html";
+		HttpSession session = request.getSession();
+		Booking booking = (Booking) session.getAttribute("booking");
+		Room room = (Room) session.getAttribute("room");
+		booking.setRoom(room.getRoomNo());
+		controller.makeBooking(booking);
+		forwardToJsp = "/homepage_main.jsp";
 		return forwardToJsp;
 	}
 

@@ -39,7 +39,7 @@ pageEncoding="UTF-8" %>
 				el.datepicker({
 					altField: el.get(0).form[id],
 					altFormat: 'yy-mm-dd',
-					dateFormat: 'dd/mm/yy',
+					dateFormat: 'yy-mm-dd',
 					onSelect: function() {
 						if ( checkin && getField('checkout') !== null ) {
 							var constraint = new Date(el.datepicker('getDate'));

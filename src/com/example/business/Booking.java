@@ -23,6 +23,20 @@ public class Booking {
 		this.depDate=depDate;
 		this.checkInStatus=checkInStatus;
 	}
+	public Booking(String userId,Date arrDate, Date depDate)
+	{
+		this.userId=userId;
+		this.roomNo=null;
+		this.referenceNo=null;
+		this.reserveTime=null;
+		this.arrDate=arrDate;
+		this.depDate=depDate;
+		this.checkInStatus=null;;
+	}
+	
+	public void setRoom(String roomNo){
+		this.roomNo = roomNo;
+	}
 
 	public Date getarrDate()
 	{

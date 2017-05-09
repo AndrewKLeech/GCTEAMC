@@ -3,46 +3,40 @@ package com.example.business;
 
 public class User {
 
-	protected String fName;
-	protected String lName;
 	protected String userId;
-	protected String password;
+	protected String name;
+	protected String email;
 	protected String birthday;
-	protected String gender;
+	protected String privilege;
 	
 	public User(){}
-	public User(String fName,String lName,String userId,String password,String birthday,String gender)
+	public User(String userId, String name, String email, String birthday, String privilege)
 	{
-		this.fName=fName;
-		this.lName=lName;
 		this.userId=userId;
-		this.password=password;
-		this.birthday=birthday;	
-		this.gender=gender;
+		this.name=name;
+		this.email=email;
+		this.birthday=birthday;
+		this.privilege=privilege;	
 	}
 	public String getuserId()
 	{
 		return this.userId;
 	}
-	public String getfName()
+	public String getName()
 	{
-		return this.fName;
+		return this.name;
 	}
-	public String getlName()
-	{
-		return this.lName;
-	}
-	public String getpassword()
-	{
-		return this.password;
-	}
-	public String getbirthday()
+	public String getBirthday()
 	{
 		return this.birthday;
 	}
-	public String getgender()
+	public String getEmail()
 	{
-		return this.gender;
+		return this.email;
+	}
+	public String getPrivilege()
+	{
+		return this.privilege;
 	}
 	
 }

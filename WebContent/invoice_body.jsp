@@ -41,10 +41,11 @@ pageEncoding="UTF-8" %>
 						<div class="panel-heading">Personal information</div>
 						<div class="panel-body">
 							<!-- insert name here -->
-							<strong>Lennard Bandol</strong><br>
+							<%@ page import="java.util.*, com.example.business.User" %>
+							<strong><c:out value="${user.getName()}" /></strong><br>
 							<!-- insert address here -->
-							71 Pilgrim Avenue<br>
-							Chevy Chase, MD 20815<br>
+							<c:out value="${user.getuserId()}" /><br>
+							<c:out value="${user.getEmail()}" /><br><br>
 						</div>
 					</div>
 				</div>
@@ -55,12 +56,14 @@ pageEncoding="UTF-8" %>
 						<div class="panel-body">
 						
 				<%@ page import="java.util.*, com.example.business.Room" %>
+				<%@ page import="java.util.*, com.example.business.Booking" %>
+				
 							<Strong>Room Number: </Strong><c:out value="${room.getRoomNo()}" /><br>
 							<Strong>Room Type: </Strong><c:out value="${room.getRoomType()}" /><br>
 							<Strong>Smoking: </Strong><c:out value="${room.getIsSmoking()}" /><br>
-							<Strong>CheckIn Date: </Strong>2017/05/20<br>
-							<Strong>CheckOut Date: </Strong>2017/05/25<br>
-							<Strong>Price: </Strong><c:out value="${room.getPrice()}" /><br>
+							<Strong>CheckIn Date: </Strong><c:out value="${booking.getarrDate()}" /><br>
+							<Strong>CheckOut Date: </Strong><c:out value="${booking.getdepDate()}" /><br>
+							<Strong>Price: </Strong><c:out value="${room.getprice()}" /><br>
 						</div>
 					</div>
 				</div>
@@ -69,7 +72,7 @@ pageEncoding="UTF-8" %>
 					<div class="panel panel-default height">
 						<div class="panel-heading">Billing Details</div>
 						<div class="panel-body">
-							<form>
+							<form action="FrontController" method="post">
 								<div class="dropdown reservationDropdown center-block">
 									<div class="form-group">
 										<label for="cardType">Card Type</label>
@@ -131,8 +134,8 @@ pageEncoding="UTF-8" %>
 				</div>
 			</div>
 		</div>
-
-		<div class="row"><button class="btn btn-primary center-block" id="adminButton">Book Now</button></div>
+		<input type="hidden" name="action" value="book">
+		<div class="row"><button type="submit" class="btn btn-primary center-block" id="adminButton" name="book">Book Now</button></div>
 		</form>
 
 		<div class="container">
