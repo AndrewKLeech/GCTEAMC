@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.example.business.Booking;
 import com.example.business.Room;
 import com.example.business.User;
 import com.example.command.Controller;
@@ -118,6 +119,7 @@ public class MainUI {
 	
 	public String searchRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
+		HttpSession session = request.getSession();
 		String forwardToJsp = "";
 		//Set varables to null;
 		Date checkInDate = null;
@@ -126,6 +128,7 @@ public class MainUI {
 		String checkOutString = null;
 		String roomType = null;
 		String numOfPeople = null;
+		String userName = null;
 		//Get string values from frontend form
 		checkInString = request.getParameter("checkIn");		
 		checkOutString = request.getParameter("checkOut");
@@ -140,9 +143,17 @@ public class MainUI {
 		}
 		//Get list of rooms from controller
 		List<Room> rooms = controller.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
+		//TEMP BOOKING OBJECT
+		if(session.getAttribute("username")!=null){
+			userName = (String) session.getAttribute("username");
+		}
+		Booking booking = new Booking(userName, checkInDate, checkOutDate);
+		
 		//Send list of rooms to frontend
-		HttpSession session = request.getSession();
+		
 		session.setAttribute("rooms", rooms);
+		session.setAttribute("booking", booking);
+		
 		String permission = null;
 		if(session.getAttribute("priv")!=null){
 			permission = (String) session.getAttribute("priv");
@@ -221,7 +232,7 @@ public class MainUI {
 		HttpSession session = request.getSession();
 		String forwardToJsp = "";
 		String userName = "";
-		
+		//ROOM
 		String roomNo = "";
 		roomNo = request.getParameter("invoice");		
 		Room room = controller.searchRoom(roomNo);
@@ -230,7 +241,6 @@ public class MainUI {
 		if(session.getAttribute("username")!=null){
 			userName = (String) session.getAttribute("username");
 		}
-		System.out.println("username is: " + userName);
 		User user = controller.getUser(userName);
 		
 		//Send room info to front end
@@ -269,6 +279,7 @@ public class MainUI {
 	public String makeBooking(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
+		HttpSession session = request.getSession();
 		String userId = request.getParameter("userId");
 		String roomNo = request.getParameter("roomNo");
 		String referenceNo = request.getParameter("referenceNo");
