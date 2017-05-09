@@ -159,7 +159,7 @@ pageEncoding="UTF-8" %>
 								<td><c:out value="${room.getRoomType()}" /></td>
 								<td><c:out value="${room.getIsSmoking()}" /></td>
 								<td><c:out value="${room.getprice()}" /></td>
-								<td><input type="hidden" name="action" value="invoice"><button type="submit" class="btn btn-primary" name="invoice">Book</button></td>
+								<td><input type="hidden" name="action" value="invoice"><button type="submit" class="btn btn-primary" name="invoice" value="invoice">Book</button></td>
 							</tr>
 							</from>
 						</c:forEach>
