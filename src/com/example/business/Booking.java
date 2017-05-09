@@ -2,7 +2,7 @@
 package com.example.business;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 public class Booking {
 
@@ -32,6 +32,10 @@ public class Booking {
 		this.arrDate=arrDate;
 		this.depDate=depDate;
 		this.checkInStatus=null;;
+	}
+	
+	public void setRoom(String roomNo){
+		this.roomNo = roomNo;
 	}
 
 	public Date getarrDate()

@@ -96,26 +96,24 @@ public class BookingDao extends Dao {
 
 	}
 	
-	public boolean makeBooking(String userId,String roomNo,String referenceNo,String reserveTime,Date arrDate,Date depDate,String checkInStatus) throws DaoException
+	public boolean makeBooking(String userId,String roomNo,Date arrDate,Date depDate) throws DaoException
 	{
 		Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
         boolean success=false;
         try {
             con = this.getConnection();
            
-            String query = "INCERT INTO reservation (referenceNo, roomNo,userId,reserveTime,checkIn,checkOut,checkInStatus) VALUES (?,?,?,?,?,?.?);";
+            String query = "INSERT INTO reservation (referenceNo, roomNo,userId,reserveTime,checkIn,checkOut,checkInStatus) VALUES (?,?,?,?,?,?,'not arrived');";
             
             ps = con.prepareStatement(query);
-            ps.setString(1, referenceNo);
+            ps.setString(1, userId);
             ps.setString(2, roomNo);
             ps.setString(3, userId);
-            ps.setString(4, reserveTime);
+            ps.setDate(4, arrDate);
             ps.setDate(5, arrDate);
             ps.setDate(6, depDate);
-            ps.setString(7,checkInStatus);
-            rs = ps.executeQuery();
+            ps.executeUpdate();
             success=true;
          } 
         catch (SQLException e) {
@@ -123,9 +121,6 @@ public class BookingDao extends Dao {
         }
         finally {
             try {
-                if (rs != null) {
-                    rs.close();
-                }
                 if (ps != null) {
                     ps.close();
                 }

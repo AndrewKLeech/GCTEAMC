@@ -297,16 +297,11 @@ public class MainUI {
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
 		HttpSession session = request.getSession();
-		String userId = request.getParameter("userId");
-		String roomNo = request.getParameter("roomNo");
-		String referenceNo = request.getParameter("referenceNo");
-		String reserveTime = request.getParameter("reserveTime");
-		String arrDatetemp =request.getParameter("checkIn");
-		String depDatetemp =request.getParameter("checkOut");
-		Date arrDate=convertDate(arrDatetemp);//need to convert string to Date;
-		Date depDate=convertDate(depDatetemp);//need to convert string to Date;
-		controller.makeBooking(userId,roomNo,referenceNo,reserveTime,arrDate,depDate,"not arrived");
-		forwardToJsp = "/homepage.html";
+		Booking booking = (Booking) session.getAttribute("booking");
+		Room room = (Room) session.getAttribute("room");
+		booking.setRoom(room.getRoomNo());
+		controller.makeBooking(booking);
+		forwardToJsp = "/homepage_main.jsp";
 		return forwardToJsp;
 	}
 

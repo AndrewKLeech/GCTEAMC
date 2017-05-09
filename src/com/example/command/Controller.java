@@ -12,6 +12,10 @@ import com.example.business.User;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 public class Controller {
 	
 	UserDao userdao = new UserDao();
@@ -158,10 +162,21 @@ public class Controller {
 		}
 		return null;
 	}
-	public boolean makeBooking(String userId,String roomNo,String referenceNo,String reserveTime,Date arrDate,Date depDate,String checkInStatus) 
+	public boolean makeBooking(Booking booking) 
 	{
+		
+		
+		String userId = null;
+		String roomNo = null;
+		Date arrDate = null;
+		Date depDate = null;
+		userId = booking.getuserId();
+		roomNo = booking.roomNo();
+		arrDate = booking.getarrDate();
+		depDate = booking.getdepDate();
+		
 		try {			
-			return bookingdao.makeBooking(userId,roomNo,referenceNo,reserveTime,arrDate,depDate,checkInStatus);
+			return bookingdao.makeBooking(userId,roomNo,arrDate,depDate);
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();
