@@ -214,6 +214,46 @@ public class MainUI {
 		forwardToJsp = "/homepage.html";
 		return forwardToJsp;
 	}
+	
+	public String invoice(HttpServletRequest request, HttpServletResponse repsonse){
+		Controller controller = new Controller();
+		String forwardToJsp = "";
+		//Get string values from frontend form
+		String roomNo = "";
+		roomNo = request.getParameter("invoice");		
+		//Get room info
+		Room room = controller.searchRoom(roomNo);
+		//Send room info to front end
+		HttpSession session = request.getSession();
+		session.setAttribute("room", room);
+		String permission = null;
+		if(session.getAttribute("priv")!=null){
+			permission = (String) session.getAttribute("priv");
+		}
+		if(permission!=null){
+			switch (permission) {
+			case "user":
+				forwardToJsp = "/invoice.jsp";	 //user page
+				break;
+				
+			case "receptionist":
+				forwardToJsp = "/invoice_reception.jsp";//receptionist page
+				break;
+				
+			case "admin":
+				forwardToJsp = "/invoice_admin.jsp";//admin page TODO: make invoice admin page
+				break;
+			
+			default: 
+				forwardToJsp = "/please_login.jsp";
+				break;
+			}
+		}
+		else{
+			forwardToJsp = "/invoice_reception.jsp";
+		}
+		return forwardToJsp;
+	}
 
 	public String makeBooking(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();

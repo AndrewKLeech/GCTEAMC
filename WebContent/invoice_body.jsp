@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,11 +53,14 @@
 					<div class="panel panel-default height">
 						<div class="panel-heading">Booking information</div>
 						<div class="panel-body">
-							<Strong>Room Number: </Strong>100<br>
-							<Strong>Room Type: </Strong>King<br>
-							<Strong>Smoking: </Strong>No<br>
+						
+				<%@ page import="java.util.*, com.example.business.Room" %>
+							<Strong>Room Number: </Strong><c:out value="${room.getRoomNo()}" /><br>
+							<Strong>Room Type: </Strong><c:out value="${room.getRoomType()}" /><br>
+							<Strong>Smoking: </Strong><c:out value="${room.getIsSmoking()}" /><br>
 							<Strong>CheckIn Date: </Strong>2017/05/20<br>
 							<Strong>CheckOut Date: </Strong>2017/05/25<br>
+							<Strong>Price: </Strong><c:out value="${room.getPrice()}" /><br>
 						</div>
 					</div>
 				</div>
@@ -136,7 +143,7 @@
 						Terms of Service | Privacy     
 					</div>
 					<div class="col-md-4">
-					<p class="muted pull-right">© 2017 Appy Days. All rights reserved</p>
+					<p class="muted pull-right">Â© 2017 Appy Days. All rights reserved</p>
 					</div>
 				</div>
 			</div>

@@ -20,18 +20,15 @@ public class UserDao extends Dao {
             String query = "SELECT userId, password FROM user WHERE userId = ?;";
             ps = con.prepareStatement(query);
             ps.setString(1, username);
-            System.out.println("works");
             rs = ps.executeQuery();
             
             while (rs.next()) {
                 String pWord = rs.getString("password");
                 if (pWord.equals(password)) {
                 	//Password matches
-                	System.out.printf("true");
                 	success = true;
                 }
                 else{
-                	System.out.printf("false");
                 	success = false;
                 }
             }

@@ -141,6 +141,7 @@ pageEncoding="UTF-8" %>
 					<%@ page import="java.util.*, com.example.business.Room" %>
 					<table class="table">
 						<c:forEach items="${rooms}" var="room">
+						<form action="FrontController" method="post">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Room Number</th>
@@ -158,8 +159,9 @@ pageEncoding="UTF-8" %>
 								<td><c:out value="${room.getRoomType()}" /></td>
 								<td><c:out value="${room.getIsSmoking()}" /></td>
 								<td><c:out value="${room.getprice()}" /></td>
-								<td><a href="invoice.html" class="btn btn-primary">Book</a></td>
+								<td><input type="hidden" name="action" value="invoice"><button type="submit" class="btn btn-primary" name="invoice" value="${room.getRoomNo()}">Book</button></td>
 							</tr>
+							</from>
 						</c:forEach>
 					</tbody>
 				</table>

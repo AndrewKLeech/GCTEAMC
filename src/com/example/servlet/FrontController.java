@@ -56,7 +56,7 @@ public class FrontController extends HttpServlet {
 		if((action = request.getParameter("action")) == null) {
 			action = "";
 		}
-		
+		System.out.println(action);
 		switch (action) {
 		case "login":
 			forwardToJsp = mainUi.login(request, response);
@@ -92,6 +92,10 @@ public class FrontController extends HttpServlet {
 			
 		case "ammendRoom":
 			forwardToJsp = mainUi.ammendRoom(request, response);
+			break;
+			
+		case "invoice":
+			forwardToJsp = mainUi.invoice(request, response);
 			break;
 		
 		case "makeBooking":

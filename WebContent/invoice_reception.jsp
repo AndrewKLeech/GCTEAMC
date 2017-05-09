@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8" %>
 
 <!-- Reservation page for online-user -->
@@ -16,11 +16,11 @@ if(session.getAttribute("priv")!=null)
 		response.sendRedirect("reservation_reception.jsp");
 	}
 	else if (priv.equals("user")){
-		response.sendRedirect("reservation_onlineuser.jsp");
+
 	}
 	else
 	{
-		
+		response.sendRedirect("reservation_nouser.jsp");
 	}
 }
 	%>
@@ -49,12 +49,12 @@ if(session.getAttribute("priv")!=null)
 <body>
 	<nav class="navbar navbar-inverse">
 			<!-- Navbar for online-user -->
-		<jsp:include page="navbar_nouser.html"/>
+		<jsp:include page="navbar_reception.html"/>
 	</nav>
 	
 	<!-- Contents about About page -->	
 	<div class="container">
-		<jsp:include page="reservation_body.jsp"/>
+		<jsp:include page="invoice_receptionist_body.jsp"/>
 	</div>
 
 </body>
