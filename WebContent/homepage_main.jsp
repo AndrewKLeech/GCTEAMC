@@ -53,7 +53,7 @@
 		<jsp:include page="navbar_nouser.html"/>
 	</nav>
 
-		<!-- Banner -->
+	<!-- Banner -->
 	<div class="container" id="bannerContainer">
 		<div class="row">
 			<div class="banner">
@@ -71,18 +71,18 @@
 			</div>
 
 			<div class="col-sm-4 col-md-4 text-center">
-	            <!--Empty Slot-->
-        	</div>
+				<!--Empty Slot-->
+			</div>
 
 			<div class="col-sm-4 col-md-4 text-center">
-	            <div class="thumbnail">
-	                <button type="button" class="btn btn-primary" onclick="location.href = 'reservation_nouser.jsp';" >Book Now</button>
-	            </div>
-        	</div>
+				<div class="thumbnail">
+					<button type="button" class="btn btn-primary" id="adminButton" onclick="location.href = 'reservation_nouser.jsp';" >Book Now</button>
+				</div>
+			</div>
 
-        	<div class="col-sm-4 col-md-4 text-center">
-	            <!--Empty Slot-->
-        	</div>
+			<div class="col-sm-4 col-md-4 text-center">
+				<!--Empty Slot-->
+			</div>
 
 		</div>
 	</div>
@@ -98,54 +98,68 @@
 			</div>
 
 			<div class="col-sm-4 col-md-4">
-	            <div class="thumbnail">
-	                <h4 class="text-center">
-	                    ROOMS & SUITES
-	                </h4>
-	                <img src="images/room1.jpg">
-	                <p></p>
-	                <p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+				<div class="thumbnail">
+					<h4 class="text-center">
+						ROOMS & SUITES
+					</h4>
+					<img src="images/room1.jpg">
+					<p></p>
+					<p class="text-justify">
+						While our hotel has a standard set of room types, there’s absolutely nothing standard about them! Each single room, double or family room, each suite we offer is enhanced with a little extra of its own! The intricate and elegant, but at the same time comfortable interior and exterior of the hotel make your stay here a blast! Additionally, all the amenities that we have, hotel-wide WiFI & our incredible eat & drink venues will be a cherry on the top!
 					</p>
-					<p>
-						<a class="btn" href="#">View details »></a>
-					</p>
-	            </div>
-        	</div>
-
-        	<div class="col-sm-4 col-md-4 text-center">
-	            <div class="thumbnail">
-	                <h4 class="text-center">
-	                    SPA & GYM
-	                </h4>
-	                <img src="images/room2.jpg">
-	                <p></p>
-	                <p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-	            </div>
-        	</div>
-
-        	<div class="col-sm-4 col-md-4 text-center">
-	            <div class="thumbnail">
-	                <h4 class="text-center">
-	                    PACKAGE & EVENT
-	                </h4>
-	                <img src="images/room3.jpg">
-	                <p></p>
-	                <p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>	            
+					
 				</div>
-        	</div>
-        </div>
-	</div>
+			</div>
+
+			<div class="col-sm-4 col-md-4 text-center">
+				<div class="thumbnail">
+					<h4 class="text-center">
+						DINING BAR
+					</h4>
+					<img src="images/bar.jpeg">
+
+					<p class="text-justify">
+						Only best meal, cooked by the professionals. Visiting our hotel, don’t forget about breakfast. We have an incredible variety of dishes. </p>
+
+						<p class="text-justify">
+							Try fresh meal from our menu, cooked by the professional chef from France. But don’t worry! If you want to try something from another part of Europe, Asia and more, Julien can do it. He has an amazing experience, cooking many years in different restaurants all over the world.
+						</p>
+
+					</div>
+				</div>
+
+				<div class="col-sm-4 col-md-4 text-center">
+					<div class="thumbnail">
+						<h4 class="text-center">
+							PACKAGE & EVENT
+						</h4>
+						<img src="images/hall.jpg">
+
+						<p class="text-justify">
+							Enjoy our spa services with a wide range of bebefits from working with our massage specialists who work with attention to details.
+						</p>
+						<p class="text-justify">
+							Get a professional massage to make your day full of joy and relaxation. Spa is the best way to forget about your every day problems and dedicate a few hours of your precious time to yourself. We have different types of massage. Choose yours now and click on the button below.
+						</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<hr>
+				<div class="col-lg-12">
+					<div class="col-md-8">
+						Terms of Service | Privacy     
+					</div>
+					<div class="col-md-4">
+					<p class="muted pull-right">© 2017 Appy Days. All rights reserved</p>
+					</div>
+				</div>
+			</div>
+		</div>
 
 </body>
 </html> 
