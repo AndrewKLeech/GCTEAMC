@@ -106,8 +106,12 @@ public class FrontController extends HttpServlet {
 			forwardToJsp = mainUi.getBooking(request, response);
 			break;
 			
-		case "canselBooking":
-			//forwardToJsp = mainUi.canselBooking(request, response);
+		case "getBookings":
+			forwardToJsp = mainUi.getBookings(request, response);
+			break;
+			
+		case "cancelBooking":
+			forwardToJsp = mainUi.cancelBooking(request, response);
 			break;	
 			
 		case "checkIn":
@@ -137,6 +141,7 @@ public class FrontController extends HttpServlet {
 			dispatcher.forward(request, response);
 			HttpSession session = request.getSession();
 			session.setAttribute("rooms", null);
+			session.setAttribute("bookings", null);
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

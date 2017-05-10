@@ -151,11 +151,22 @@ public class Controller {
 			return false;
 		}
 	}
-
+	//for check in check out page
 	public ArrayList<Booking> getBooking()
 	{
 		try {			
 			return bookingdao.getBooking();
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	// for user account page
+	public ArrayList<Booking> getBooking(String username)
+	{
+		try {			
+			return bookingdao.getBooking(username);
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();
@@ -187,7 +198,7 @@ public class Controller {
 	public boolean cancelBooking(String bookingId)
 	{
 		try {			
-			return bookingdao.canselBooking(bookingId);
+			return bookingdao.cancelBooking(bookingId);
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();

@@ -50,7 +50,7 @@ if(session.getAttribute("priv")!=null)
 	</nav>
 	
 	<div class="container">
-		<jsp:include page="account_body.html"/>
+		<jsp:include page="account_body.jsp"/>
 	</div>
 </body>
 </html>

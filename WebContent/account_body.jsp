@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -168,9 +171,33 @@
 					</div>
 
 					<div class="row container">
-						<h2 class="text-center">Current Reservations</h2>
+					<form action="FrontController" method="post">
+						<h2 class="text-center"><input type="hidden" name="action" value="getBookings""><button type="submit" class="btn btn-primary" name="getBooking">Show Your Bookings</button></h2>
+						</form>
 						<div class="col-xs-12" id="reservationContainer">
-							Display Info here
+				<%@ page import="java.util.*, com.example.business.Booking" %>
+					<table class="table table-responsive table-striped table-hover">
+						<c:forEach items="${bookings}" var="booking">
+						<form action="FrontController" method="post">
+						<thead class="thead-inverse">
+							<tr>
+								<th>RoomNo</th>
+								<th>Check In Date</th>
+								<th>Check Out Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th><c:out value="${booking.roomNo()}" /></th>
+								<td><c:out value="${booking.getarrDate()}" /></td>
+								<td><c:out value="${booking.getdepDate()}" /></td>
+								<input type="hidden" name="refNo" value="${booking.getReferenceNo()}">
+								<td><input type="hidden" name="action" value="cancelBooking""><button type="submit" class="btn btn-primary" name="cancelBooking" value="${booking.getReferenceNo()}">CANCEL</button></td>
+								</form>
+							</tr>
+						</tbody>
+						</c:forEach>
+					</table>
 						</div>
 
 					</div>
