@@ -231,7 +231,7 @@ public class MainUI {
 		forwardToJsp = "/homepage.html";
 		return forwardToJsp;
 	}
-
+	//for checkin checkout page
 	public String getBooking(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		HttpSession session = request.getSession();
@@ -239,6 +239,18 @@ public class MainUI {
 		List<Booking> bookings = controller.getBooking();
 		session.setAttribute("bookings", bookings);	
 		forwardToJsp = "/checkInOut_reception.jsp";
+		return forwardToJsp;
+	}
+	//for user
+	public String getBookings(HttpServletRequest request, HttpServletResponse repsonse){
+		Controller controller = new Controller();
+		HttpSession session = request.getSession();
+		String forwardToJsp = "";
+		String username = null;
+		username = (String) session.getAttribute("username");
+		List<Booking> bookings = controller.getBooking(username);
+		session.setAttribute("bookings", bookings);	
+		forwardToJsp = "/account_onlineuser.jsp";
 		return forwardToJsp;
 	}
 	

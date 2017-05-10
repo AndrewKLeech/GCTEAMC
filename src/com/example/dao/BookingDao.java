@@ -183,6 +183,54 @@ public class BookingDao extends Dao {
         }//end finally	
 	}
 	
+	//FOR USER ACCOUNT PAGE
+	public ArrayList<Booking> getBooking(String username) throws DaoException
+	{
+		Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Booking> bookingList=new ArrayList<Booking>();
+        try {
+            con = this.getConnection();
+           
+            String query = "SELECT * FROM reservation WHERE NOT checkInStatus = 'checked out' AND userId = ?;";
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+            	String userIdt=rs.getString("userId");
+            	String roomNo=rs.getString("roomNo");
+            	String referenceNot=rs.getString("referenceNo");
+            	String reserverTime=rs.getString("reserveTime");
+            	Date arrDate=rs.getDate("checkIn");
+            	Date depDate=rs.getDate("checkOut");
+            	String checkInStatus=rs.getString("checkInStatus");
+                Booking booking=new Booking(userIdt,roomNo,referenceNot,reserverTime,arrDate,depDate,checkInStatus);
+                bookingList.add(booking);
+                }
+            return bookingList;
+        } 
+        catch (SQLException e) {
+            throw new DaoException("getBooking add: " + e.getMessage());    
+        }
+        finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            }//end try 
+            catch (SQLException e) {
+                throw new DaoException("getBooking add: " + e.getMessage());
+            }//end catch
+        }//end finally	
+	}
+	
 	
 	public boolean canselBooking(String referenceNo) throws DaoException
 	{
