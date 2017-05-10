@@ -182,14 +182,13 @@ public class RoomDao extends Dao {
 		
 		Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
         boolean success=false;
         try {
             con = this.getConnection();
             String query = "DELETE FROM room WHERE roomNo = ?;";  
             ps = con.prepareStatement(query);
             ps.setString(1, roomNo);
-            rs = ps.executeQuery();
+            ps.executeUpdate();
             success=true;
          } 
         catch (SQLException e) {
@@ -197,9 +196,6 @@ public class RoomDao extends Dao {
         }
         finally {
             try {
-                if (rs != null) {
-                    rs.close();
-                }
                 if (ps != null) {
                     ps.close();
                 }

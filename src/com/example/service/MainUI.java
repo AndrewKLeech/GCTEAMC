@@ -236,11 +236,13 @@ public class MainUI {
 	public String removeRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
-		String roomNo = request.getParameter("roomNo");
+		String roomNo = null;
+		roomNo = request.getParameter("roomNo");
 		controller.removeRoom(roomNo);
-		forwardToJsp = "/homepage.html";
+		forwardToJsp = "/manageRoom.jsp";
 		return forwardToJsp;
 	}
+	
 	public String addRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
