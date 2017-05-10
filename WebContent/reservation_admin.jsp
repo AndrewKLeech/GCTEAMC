@@ -23,6 +23,9 @@ if(session.getAttribute("priv")!=null)
 		response.sendRedirect("reservation_nouser.jsp");
 	}
 }
+else{
+	response.sendRedirect("reservation_nouser.jsp");
+}
 	%>
 	<title>Hotel Booking Extravaganza</title>
 

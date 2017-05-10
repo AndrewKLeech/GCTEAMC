@@ -8,21 +8,23 @@ pageEncoding="UTF-8" %>
 	<%
 	if(session.getAttribute("priv")!=null)
 		{
-	String priv=(String)session.getAttribute("priv"); 
-	if(priv.equals("admin")){
-
-}
-else if(priv.equals("receptionist")){
-response.sendRedirect("homepage_reception.jsp");
-}
-else if (priv.equals("user")){
-response.sendRedirect("homepage_onlineuser.jsp");
-}
-else
-{
-	response.sendRedirect("homepage_main.jsp");
-}
-}
+		String priv=(String)session.getAttribute("priv"); 
+		if(priv.equals("admin")){
+		}
+		else if(priv.equals("receptionist")){
+			response.sendRedirect("homepage_reception.jsp");
+		}
+		else if (priv.equals("user")){
+			response.sendRedirect("homepage_onlineuser.jsp");
+		}
+		else
+		{
+			response.sendRedirect("homepage_main.jsp");
+		}
+	}
+	else{
+		response.sendRedirect("homepage_main.jsp");
+	}
 %>
 <title>Hotel Booking Extravaganza</title>
 
