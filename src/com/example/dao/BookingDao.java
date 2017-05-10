@@ -227,18 +227,17 @@ public class BookingDao extends Dao {
 	{
 		Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
         
         try {
             con = this.getConnection();
            
-            String query = "UPDATE reservation SET checkInStatus = ? WHERE referernceNo = ?  ";
+            String query = "UPDATE reservation SET checkInStatus = ? WHERE referenceNo = ?  ";
             
             ps = con.prepareStatement(query);
             ps.setString(1, "checked in");
             ps.setString(2, referenceNo);
            
-            rs = ps.executeQuery();
+            ps.executeUpdate();
            
             return true;
         } 
@@ -247,9 +246,6 @@ public class BookingDao extends Dao {
         }
         finally {
             try {
-                if (rs != null) {
-                    rs.close();
-                }
                 if (ps != null) {
                     ps.close();
                 }
@@ -262,6 +258,8 @@ public class BookingDao extends Dao {
             }//end catch
         }//end finally	
 	}
+	
+	
 	public boolean checkOut(String referenceNo) throws DaoException
 	{
 		Connection con = null;

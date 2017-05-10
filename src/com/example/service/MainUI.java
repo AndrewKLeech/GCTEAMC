@@ -314,12 +314,11 @@ public class MainUI {
 	}
 	public String checkIn(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
+		String referenceNo = null;
 		String forwardToJsp = "";	
-		
-		String referenceNo = request.getParameter("referenceNo");
-	
+		referenceNo = request.getParameter("refNo");
 		controller.checkIn(referenceNo);
-		forwardToJsp = "/homepage.html";
+		forwardToJsp = "/checkInOut_reception.jsp";
 		return forwardToJsp;
 	}
 	public String checkOut(HttpServletRequest request, HttpServletResponse repsonse){

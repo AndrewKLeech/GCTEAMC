@@ -40,6 +40,7 @@ pageEncoding="UTF-8" %>
 						<button type="submit" class="btn btn-info btn-lg" >
 							<i class="glyphicon glyphicon-search"></i>
 						</button>
+						</form>
 					</span>
 				</div>
 			</div>
@@ -69,8 +70,13 @@ pageEncoding="UTF-8" %>
 								<th><c:out value="${booking.roomNo()}" /></th>
 								<td><c:out value="${booking.getarrDate()}" /></td>
 								<td><c:out value="${booking.getdepDate()}" /></td>
-								<td><input type="hidden" name="action" value=""checkIn""><button type="submit" class="btn btn-primary" name="checkIn" value="${booking.getReferenceNo()}">Check In</button><</td>
-								<td><input type="hidden" name="action" value=""checkOut""><button type="submit" class="btn btn-primary" name="checkOut" value="${booking.getReferenceNo()}">Check Out</button></td>
+								<input type="hidden" name="refNo" value="${booking.getReferenceNo()}">
+								<td><input type="hidden" name="action" value="checkIn""><button type="submit" class="btn btn-primary" name="checkIn" value="${booking.getReferenceNo()}">Check In</button><</td>
+								</form>
+								<form action="FrontController" method="post">
+								<input type="hidden" name="refNo" value="${booking.getReferenceNo()}">
+								<td><input type="hidden" name="action" value="checkOut""><button type="submit" class="btn btn-primary" name="checkOut" value="${booking.getReferenceNo()}">Check Out</button></td>
+								</form>
 							</tr>
 						</tbody>
 						</c:forEach>
