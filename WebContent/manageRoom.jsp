@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!-- Manage Romm page for admin -->
 <!DOCTYPE html>
@@ -39,9 +40,12 @@ pageEncoding="UTF-8" %>
 				<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 input-group">
 					<input type="text" class="form-control" placeholder="Search Rooms">
 					<span class="input-group-btn">
-						<button class="btn btn-info btn-lg" type="button">
+						<form action="FrontController" method="post">
+					<input type="hidden" name="action" value="getRooms">
+						<button type="submit" class="btn btn-info btn-lg" >
 							<i class="glyphicon glyphicon-search"></i>
 						</button>
+						</form>
 					</span>
 				</div>
 			</div>
@@ -51,34 +55,37 @@ pageEncoding="UTF-8" %>
 			<h3 class="text-center">
 				Room Information
 			</h3>
-
-			<table class="table">
-				<c:forEach items="${rooms}" var="room">
-				<thead class="thead-inverse">
-					<tr>
-						<th>Room Number</th>
-						<th>Room Details</th>
-						<th>Room Type</th>
-						<th>Smoking</th>
-						<th>Room Price</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>101</td>
-						<td>Large King Bed Room</td>
-						<td>King</td>
-						<td>Yes</td>
-						<td>$99.99</td>
-						<td><a href="#" class="btn btn-danger">Edit</a></td>
-						<td><a href="#" class="btn btn-danger">Delete</a></td>
-					</tr>
-				</tbody>
-				</c:forEach>
-			</table>
-
+			<%@ page import="java.util.*, com.example.business.Room" %>
+					<table class="table table-responsive table-striped table-hover">
+						<c:forEach items="${rooms}" var="room">
+						<form action="FrontController" method="post">
+						<thead class="thead-inverse">
+							<tr>
+								<th>Room Number</th>
+								<th>Room Details</th>
+								<th>Room Type</th>
+								<th>Smoking</th>
+								<th>Room Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><c:out value="${room.getRoomNo()}" /></td>
+								<td><!-- insert room details --></td>
+								<td><c:out value="${room.getRoomType()}" /></td>
+								<td><c:out value="${room.getIsSmoking()}" /></td>
+								<td><c:out value="${room.getprice()}" /></td>
+								<input type="hidden" name="roomNo" value="${room.getRoomNo()}">
+								<td><input type="hidden" name="action" value="edit""><button type="submit" class="btn btn-primary" name="edit" value="${room.getRoomNo()}">Edit</button><</td>
+								</form>
+								<form action="FrontController" method="post">
+								<input type="hidden" name="roomNo" value="${room.getRoomNo()}">
+								<td><input type="hidden" name="action" value="removeRoom"><button type="submit" class="btn btn-primary" name="removeRoom" value="${room.getRoomNo()}">Delete</button></td>
+								</form>
+							</tr>
+						</tbody>
+						</c:forEach>
+					</table>
 			<a class="center-block btn btn-default btn-info manageButton" href="#" data-toggle="modal" data-target="#addRoomModal">Add Room</a>
 			
 		</div>

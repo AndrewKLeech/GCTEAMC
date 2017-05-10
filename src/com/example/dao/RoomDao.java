@@ -75,6 +75,58 @@ public class RoomDao extends Dao {
         return roomList;
 	}
 	
+	
+	public ArrayList<Room> getRooms() throws DaoException{
+		ArrayList<Room> roomList = new ArrayList<Room>();
+		Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            con = this.getConnection();
+            
+            String query = "SELECT roomNo, bedType, smoking, price FROM room;";
+            
+            ps = con.prepareStatement(query);           
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+            	//Add all room data to room object then add to array list.
+            	String no = null;
+            	String type = null;
+            	String smoking = null;
+            	String price = null;
+            	
+                no = rs.getString("roomNo");
+                type = rs.getString("bedType");
+                smoking = rs.getString("smoking");
+                price = rs.getString("price");
+                Room room = new Room(no,type,smoking,price);
+                roomList.add(room);
+            }
+        } 
+        catch (SQLException e) {
+            throw new DaoException("getRooms: " + e.getMessage());    
+        }
+        finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            }//end try 
+            catch (SQLException e) {
+                throw new DaoException("getRooms: " + e.getMessage());
+            }//end catch
+        }//end finally
+        return roomList;
+	}
+	
+	
 	public Room searchRoom(String roomNo) throws DaoException{
 		Room room = null;
 		Connection con = null;
