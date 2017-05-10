@@ -86,16 +86,16 @@ public class Controller {
 	
 	
 	
-	public boolean removeUser(String username, String password){
+	public boolean removeUser(String username){
 		Boolean success = false;
 		try {			
-			success = userdao.login(username, password);
+			success = userdao.removeUser(username);
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();
 		}
 		return success;
-	}//End login
+	}//End removeUser
 	
 	
 	
@@ -110,7 +110,18 @@ public class Controller {
 		}
 	}
 	
-public ArrayList<Room> getRooms(){
+	public ArrayList<User> getAllUsers(){
+		
+		try {			
+			return userdao.getAllUsers();
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<Room> getRooms(){
 		
 		try {			
 			return roomdao.getRooms();
