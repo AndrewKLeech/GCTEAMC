@@ -57,4 +57,7 @@ public class Booking {
 	public String getReferenceNo(){
 		return this.referenceNo;
 	}
+	public String getStatus(){
+		return this.checkInStatus;
+	}
 }

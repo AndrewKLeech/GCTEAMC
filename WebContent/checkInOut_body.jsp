@@ -60,6 +60,7 @@ pageEncoding="UTF-8" %>
 								<th>RoomNo</th>
 								<th>Check In Date</th>
 								<th>Check Out Date</th>
+								<th>Status</th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -70,6 +71,7 @@ pageEncoding="UTF-8" %>
 								<th><c:out value="${booking.roomNo()}" /></th>
 								<td><c:out value="${booking.getarrDate()}" /></td>
 								<td><c:out value="${booking.getdepDate()}" /></td>
+								<td><c:out value="${booking.getStatus()}" /></td>
 								<input type="hidden" name="refNo" value="${booking.getReferenceNo()}">
 								<td><input type="hidden" name="action" value="checkIn""><button type="submit" class="btn btn-primary" name="checkIn" value="${booking.getReferenceNo()}">Check In</button><</td>
 								</form>
