@@ -331,7 +331,7 @@ public class MainUI {
 				break;
 				
 			case "admin":
-				forwardToJsp = "/invoice_admin.jsp";//admin page TODO: make invoice admin page
+				forwardToJsp = "/invoice_reception.jsp";
 				break;
 			
 			default: 
@@ -340,7 +340,7 @@ public class MainUI {
 			}
 		}
 		else{
-			forwardToJsp = "/invoice_reception.jsp";
+			forwardToJsp = "/please_login.jsp";
 		}
 		return forwardToJsp;
 	}
