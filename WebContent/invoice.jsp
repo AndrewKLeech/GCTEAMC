@@ -10,10 +10,10 @@ if(session.getAttribute("priv")!=null)
 {
 	String priv=(String)session.getAttribute("priv"); 
 	if(priv.equals("admin")){
-		response.sendRedirect("reservation_admin.jsp");
+		response.sendRedirect("invoice_receptionist_body.jsp");
 	}
 	else if(priv.equals("receptionist")){
-		response.sendRedirect("reservation_reception.jsp");
+		response.sendRedirect("invoice_receptionist_body.jsp");
 	}
 	else if (priv.equals("user")){
 
@@ -22,6 +22,9 @@ if(session.getAttribute("priv")!=null)
 	{
 		response.sendRedirect("reservation_nouser.jsp");
 	}
+}
+else{
+	response.sendRedirect("homepage_main.jsp");
 }
 	%>
 	<title>Hotel Booking Extravaganza</title>

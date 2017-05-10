@@ -23,6 +23,9 @@ if(session.getAttribute("priv")!=null)
 		response.sendRedirect("homepage_main.jsp");
 	}
 }
+else{
+	response.sendRedirect("homepage_main.jsp");
+}
 	%>
 	<title>Hotel Booking Extravaganza</title>
 
