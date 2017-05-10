@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8" %>
+pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,7 @@ if(session.getAttribute("priv")!=null)
 	
 	<!-- Contents about home page -->	
 	<div class="container">
-		<jsp:include page="checkInOut_body.html"/>
+		<jsp:include page="checkInOut_body.jsp"/>
 	</div>
 </body>
 </html>
