@@ -49,7 +49,7 @@ if(session.getAttribute("priv")!=null)
 	</nav>
 	
 	<div class="container">
-		<jsp:include page="checkInOut_body.html"/>
+		<jsp:include page="checkInOut_body.jsp"/>
 	</div>
 </body>
 </html>

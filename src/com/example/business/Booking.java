@@ -54,4 +54,7 @@ public class Booking {
 	{
 		return this.roomNo;
 	}
+	public String getReferenceNo(){
+		return this.referenceNo;
+	}
 }

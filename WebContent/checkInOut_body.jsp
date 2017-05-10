@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +35,9 @@
 				<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 input-group">
 					<input type="text" class="form-control" placeholder="Search User">
 					<span class="input-group-btn">
-						<button class="btn btn-info btn-lg" type="button">
+					<form action="FrontController" method="post">
+					<input type="hidden" name="action" value="getBooking">
+						<button type="submit" class="btn btn-info btn-lg" >
 							<i class="glyphicon glyphicon-search"></i>
 						</button>
 					</span>
@@ -44,14 +49,14 @@
 				User List
 			</h3>
 
-			
+					<%@ page import="java.util.*, com.example.business.Booking" %>
 					<table class="table table-responsive table-striped table-hover">
-						<c:forEach items="${rooms}" var="room">
+						<c:forEach items="${bookings}" var="booking">
+						<form action="FrontController" method="post">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Name</th>
-								<th>Email</th>
-								<th>Contact Number</th>
+								<th>RoomNo</th>
 								<th>Check In Date</th>
 								<th>Check Out Date</th>
 								<th></th>
@@ -60,18 +65,16 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>Lennard Bandol</td>
-								<th>lennard@gmail.com</th>
-								<td>+353834932012</td>
-								<td>05/02/2017</td>
-								<td>05/10/2017</td>
-								<td><a href="#" class="btn btn-danger">Check In</a></td>
-								<td><a href="#" class="btn btn-danger">Check Out</a></td>
+								<td><c:out value="${booking.getuserId()}" /></td>
+								<th><c:out value="${booking.roomNo()}" /></th>
+								<td><c:out value="${booking.getarrDate()}" /></td>
+								<td><c:out value="${booking.getdepDate()}" /></td>
+								<td><input type="hidden" name="action" value=""checkIn""><button type="submit" class="btn btn-primary" name="checkIn" value="${booking.getReferenceNo()}">Check In</button><</td>
+								<td><input type="hidden" name="action" value=""checkOut""><button type="submit" class="btn btn-primary" name="checkOut" value="${booking.getReferenceNo()}">Check Out</button></td>
 							</tr>
 						</tbody>
 						</c:forEach>
 					</table>
-		
 			</div>
 		</div>
 	</div>

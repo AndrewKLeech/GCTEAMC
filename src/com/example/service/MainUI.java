@@ -234,13 +234,11 @@ public class MainUI {
 
 	public String getBooking(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
-		String forwardToJsp = "";	
-		String userId = null;
-		String referenceNo=null;
-		userId=request.getParameter("userId");
-		referenceNo= request.getParameter("referenceNo");
-		controller.getBooking(userId,referenceNo);
-		forwardToJsp = "/homepage.html";
+		HttpSession session = request.getSession();
+		String forwardToJsp = "";
+		List<Booking> bookings = controller.getBooking();
+		session.setAttribute("bookings", bookings);	
+		forwardToJsp = "/checkInOut_reception.jsp";
 		return forwardToJsp;
 	}
 	

@@ -152,10 +152,10 @@ public class Controller {
 		}
 	}
 
-	public ArrayList<Booking> getBooking(String userId,String bookingId)
+	public ArrayList<Booking> getBooking()
 	{
 		try {			
-			return bookingdao.getBooking(userId,bookingId);
+			return bookingdao.getBooking();
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();
