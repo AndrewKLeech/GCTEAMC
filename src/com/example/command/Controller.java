@@ -95,7 +95,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		return success;
-	}//End login
+	}//End removeUser
 	
 	
 	
@@ -121,7 +121,7 @@ public class Controller {
 		}
 	}
 	
-public ArrayList<Room> getRooms(){
+	public ArrayList<Room> getRooms(){
 		
 		try {			
 			return roomdao.getRooms();

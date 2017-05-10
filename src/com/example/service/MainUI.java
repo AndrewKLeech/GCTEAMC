@@ -119,12 +119,10 @@ public class MainUI {
 	public String removeUser(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
-		String username = request.getParameter("username");
+		String username = null;
+		username = request.getParameter("uName");
 		controller.removeUser(username);
-		HttpSession session = request.getSession();
-		session.setAttribute("username", null);
-		session.setAttribute("priv", null);
-		forwardToJsp = "/homepage_main.jsp";
+		forwardToJsp = "/manageUser.jsp";
 		return forwardToJsp;
 	}//End remove user
 	

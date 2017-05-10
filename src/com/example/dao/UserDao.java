@@ -279,7 +279,7 @@ public class UserDao extends Dao {
         boolean success = false;
         try {
             con = this.getConnection();
-            String query = "DELETE userId FROM user WHERE userId = ?;";
+            String query = "DELETE FROM user WHERE userId = ?;";
             ps = con.prepareStatement(query);
             ps.setString(1, username);
             ps.executeUpdate();
