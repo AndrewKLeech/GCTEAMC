@@ -76,7 +76,7 @@ pageEncoding="UTF-8" %>
 								<td><c:out value="${room.getIsSmoking()}" /></td>
 								<td><c:out value="${room.getprice()}" /></td>
 								<input type="hidden" name="roomNo" value="${room.getRoomNo()}">
-								<td><input type="hidden" name="action" value="edit""><button type="submit" class="btn btn-primary" name="edit" value="${room.getRoomNo()}">Edit</button><</td>
+								<td><input type="hidden" name="action" value="edit""><button type="submit" class="btn btn-primary" name="edit" value="${room.getRoomNo()}">Edit</button></td>
 								</form>
 								<form action="FrontController" method="post">
 								<input type="hidden" name="roomNo" value="${room.getRoomNo()}">

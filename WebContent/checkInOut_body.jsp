@@ -73,7 +73,7 @@ pageEncoding="UTF-8" %>
 								<td><c:out value="${booking.getdepDate()}" /></td>
 								<td><c:out value="${booking.getStatus()}" /></td>
 								<input type="hidden" name="refNo" value="${booking.getReferenceNo()}">
-								<td><input type="hidden" name="action" value="checkIn""><button type="submit" class="btn btn-primary" name="checkIn" value="${booking.getReferenceNo()}">Check In</button><</td>
+								<td><input type="hidden" name="action" value="checkIn""><button type="submit" class="btn btn-primary" name="checkIn" value="${booking.getReferenceNo()}">Check In</button></td>
 								</form>
 								<form action="FrontController" method="post">
 								<input type="hidden" name="refNo" value="${booking.getReferenceNo()}">
