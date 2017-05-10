@@ -110,6 +110,17 @@ public class Controller {
 		}
 	}
 	
+public ArrayList<Room> getRooms(){
+		
+		try {			
+			return roomdao.getRooms();
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public Room searchRoom(String roomNo){
 		
 		try {			

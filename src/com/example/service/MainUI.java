@@ -154,10 +154,7 @@ public class MainUI {
 			e.printStackTrace();
 		}
 		checkOutDate = new java.sql.Date(date2.getTime());
-		
-		System.out.println(checkInDate);
-		System.out.println(checkOutDate);
-		
+
 		//Get list of rooms from controller
 		List<Room> rooms = controller.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
 		//TEMP BOOKING OBJECT
@@ -199,15 +196,53 @@ public class MainUI {
 		}
 		return forwardToJsp;
 	}
+	
+	public String getRooms(HttpServletRequest request, HttpServletResponse repsonse){
+		Controller controller = new Controller();
+		HttpSession session = request.getSession();
+		String forwardToJsp = "";
+		//Get list of rooms from controller
+		List<Room> rooms = controller.getRooms();
+		session.setAttribute("rooms", rooms);
+		String permission = null;
+		if(session.getAttribute("priv")!=null){
+			permission = (String) session.getAttribute("priv");
+		}
+		if(permission!=null){
+			switch (permission) {
+			case "user":
+				forwardToJsp = "/homepage_onlineuser.jsp";	 //user page
+				break;
+				
+			case "receptionist":
+				forwardToJsp = "/homepage_reception.jsp";//receptionist page
+				break;
+				
+			case "admin":
+				forwardToJsp = "/manageRoom.jsp";//admin page
+				break;
+			
+			default: 
+				forwardToJsp = "/homepage_main.jsp";
+				break;
+			}
+		}
+		else{
+			forwardToJsp = "/homepage_main.jsp";
+		}
+		return forwardToJsp;
+	}
 
 	public String removeRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
-		String roomNo = request.getParameter("roomNo");
+		String roomNo = null;
+		roomNo = request.getParameter("roomNo");
 		controller.removeRoom(roomNo);
-		forwardToJsp = "/homepage.html";
+		forwardToJsp = "/manageRoom.jsp";
 		return forwardToJsp;
 	}
+	
 	public String addRoom(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
