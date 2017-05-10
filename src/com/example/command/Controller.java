@@ -86,10 +86,10 @@ public class Controller {
 	
 	
 	
-	public boolean removeUser(String username, String password){
+	public boolean removeUser(String username){
 		Boolean success = false;
 		try {			
-			success = userdao.login(username, password);
+			success = userdao.removeUser(username);
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();
@@ -103,6 +103,17 @@ public class Controller {
 		
 		try {			
 			return roomdao.searchRoom(checkInDate, checkOutDate, roomType, numOfPeople);
+		} 
+		catch (DaoException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<User> getAllUsers(){
+		
+		try {			
+			return userdao.getAllUsers();
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();

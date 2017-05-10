@@ -107,15 +107,24 @@ public class MainUI {
 		return forwardToJsp;
 	}
 	
+	public String getAllUsers(HttpServletRequest request, HttpServletResponse repsonse){
+		Controller controller = new Controller();
+		String forwardToJsp = "";
+		HttpSession session = request.getSession();
+		session.setAttribute("userlist", controller.getAllUsers());
+		forwardToJsp = "/manageUser.jsp";
+		return forwardToJsp;
+	}
+	
 	public String removeUser(HttpServletRequest request, HttpServletResponse repsonse){
 		Controller controller = new Controller();
 		String forwardToJsp = "";	
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		controller.removeUser(username, password);
+		controller.removeUser(username);
 		HttpSession session = request.getSession();
 		session.setAttribute("username", null);
-		forwardToJsp = "/homepage.html";
+		session.setAttribute("priv", null);
+		forwardToJsp = "/homepage_main.jsp";
 		return forwardToJsp;
 	}//End remove user
 	

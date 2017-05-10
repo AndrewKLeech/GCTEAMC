@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.example.business.Room;
 import com.example.business.User;
@@ -109,6 +110,56 @@ public class UserDao extends Dao {
         return user;
     }//End getUser
     
+    
+    public ArrayList<User> getAllUsers() throws DaoException{
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<User> users = new ArrayList<User>();
+        try {
+            con = this.getConnection();
+            String query = "SELECT userId, name, email, birthday, privilege FROM user;";
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+            	String userId = null;
+            	String name = null;
+            	String email = null;
+            	String birthday = null;
+            	String privilege = null;
+            	
+            	userId = rs.getString("userId");
+                name = rs.getString("name");
+                email = rs.getString("email");
+                birthday = rs.getString("birthday");
+                privilege = rs.getString("privilege");
+        
+                User user = new User(userId, name, email, birthday, privilege);
+                users.add(user);
+            }
+        } 
+        catch (SQLException e) {
+            throw new DaoException("getAllUsers: " + e.getMessage());    
+        } 
+        finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            }//end try 
+            catch (SQLException e) {
+                throw new DaoException("getAllUsers: " + e.getMessage());
+            }//end catch
+        }//end finally
+        return users;
+    }//End getUser
     
     
     public String checkPermission(String username) throws DaoException{
@@ -222,42 +273,22 @@ public class UserDao extends Dao {
     }//End addStaff
     
     
-    public boolean removeUser(String username, String password) throws DaoException{
+    public boolean removeUser(String username) throws DaoException{
         Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
         boolean success = false;
         try {
             con = this.getConnection();
-            String query = "SELECT userId, password FROM user WHERE userId = ?;";
+            String query = "DELETE userId FROM user WHERE userId = ?;";
             ps = con.prepareStatement(query);
             ps.setString(1, username);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                String pWord = rs.getString("password");
-                if (pWord.equals(password)) 
-                {
-                	//Password matches
-                	success = true;
-                	String query2 = "DELETE FROM user WHERE userId = ?;";
-                    ps = con.prepareStatement(query2);
-                    ps.setString(1, username);
-                    ps.executeUpdate();
-                }//End if
-                else
-                {
-                	success = false;
-                }//End else
-            }//End while
+            ps.executeUpdate();
         }//End try
         catch (SQLException e) {
             throw new DaoException("removeUser: " + e.getMessage());    
         } 
         finally {
             try {
-                if (rs != null) {
-                    rs.close();
-                }
                 if (ps != null) {
                     ps.close();
                 }

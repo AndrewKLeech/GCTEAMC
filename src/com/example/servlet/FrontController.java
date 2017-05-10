@@ -78,6 +78,10 @@ public class FrontController extends HttpServlet {
 			forwardToJsp = mainUi.removeUser(request, response);
 			break;
 			
+		case "getAllUsers":
+			forwardToJsp = mainUi.getAllUsers(request, response);
+			break;
+			
 		case "searchRoom":
 			forwardToJsp = mainUi.searchRoom(request, response);
 			break;
@@ -147,6 +151,7 @@ public class FrontController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("rooms", null);
 			session.setAttribute("bookings", null);
+			session.setAttribute("userlist", null);
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
