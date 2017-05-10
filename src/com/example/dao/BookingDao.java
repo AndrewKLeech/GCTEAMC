@@ -232,11 +232,10 @@ public class BookingDao extends Dao {
 	}
 	
 	
-	public boolean canselBooking(String referenceNo) throws DaoException
+	public boolean cancelBooking(String referenceNo) throws DaoException
 	{
 		Connection con = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
         
         try {
             con = this.getConnection();
@@ -245,7 +244,7 @@ public class BookingDao extends Dao {
             
             ps = con.prepareStatement(query);
             ps.setString(1, referenceNo);
-            rs = ps.executeQuery();
+            ps.executeUpdate();
            
             return true;
         } 
@@ -254,9 +253,6 @@ public class BookingDao extends Dao {
         }
         finally {
             try {
-                if (rs != null) {
-                    rs.close();
-                }
                 if (ps != null) {
                     ps.close();
                 }

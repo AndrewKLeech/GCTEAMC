@@ -314,6 +314,17 @@ public class MainUI {
 		forwardToJsp = "/homepage_main.jsp";
 		return forwardToJsp;
 	}
+	
+	public String cancelBooking(HttpServletRequest request, HttpServletResponse repsonse){
+		Controller controller = new Controller();
+		String forwardToJsp = "";	
+		HttpSession session = request.getSession();
+		String bookingId = null;
+		bookingId = request.getParameter("cancelBooking");
+		controller.cancelBooking(bookingId);
+		forwardToJsp = "/account_onlineuser.jsp";
+		return forwardToJsp;
+	}
 
 	public Date convertDate(String temp)
 	{

@@ -198,7 +198,7 @@ public class Controller {
 	public boolean cancelBooking(String bookingId)
 	{
 		try {			
-			return bookingdao.canselBooking(bookingId);
+			return bookingdao.cancelBooking(bookingId);
 		} 
 		catch (DaoException e) {
 			e.printStackTrace();
